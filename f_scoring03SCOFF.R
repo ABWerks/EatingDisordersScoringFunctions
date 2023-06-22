@@ -17,8 +17,10 @@
 #   publisher={BMJ Publishing Group LTD}
 # }
 # 
+# Depends: Hmisc
+# 
 # Arguments:
-#   data: The survey
+#   data: The survey. Assumes item names in the original survey have underscores ~ EDDS_1, EDDS_2, etc...
 #
 # Details:
 # Score one point for each question answered “yes”
@@ -26,31 +28,43 @@
 # (https://fpnotebook.com/Psych/Exam/ScfQstnr.htm) 
 # Item	Question	Values
 # 0 = No, 1 = Yes
-# scoff_1	 Do you make yourself sick because you feel uncomfortably full? 	
-# scoff_2	Do you worry you have lost control over how much you eat?
-# scoff_3	Have you recently lost more than 14 lbs in a three month period?
-# scoff_4	Do you believe yourself to be fat when others say you are too thin?
-# scoff_5	Would you say that food dominates your life?
+# SCOFF_1	 Do you make yourself sick because you feel uncomfortably full? 	
+# SCOFF_2	Do you worry you have lost control over how much you eat?
+# SCOFF_3	Have you recently lost more than 14 lbs in a three month period?
+# SCOFF_4	Do you believe yourself to be fat when others say you are too thin?
+# SCOFF_5	Would you say that food dominates your life?
 #
 # Values:
 #   scoreSCOFFTotal: item total score for all SCOFF items
-#   scoff_*: All missing values converted to 0
+#   SCOFF_*: All missing values converted to 0
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# Items And Questions
+dsItems  <- read.csv("EatingDisorderItemsAndQuestions.csv")
+dsItems <- dsItems[grepl("^(EDDS)", dsItems$Item, ignore.case = T), ]
 
 # table shortcut
 f_tableNA <- function(...)
   table(..., useNA = "ifany")
   
 f_scoringSCOFF <- function(data){
-  varsScoff <- paste('scoff', 1:5, sep = '_')
+  varsScoff <- paste('SCOFF', 1:5, sep = '_')
   data$scoreSCOFFTotal <- rowSums(data[, varsScoff], na.rm = T)
   data[, varsScoff] <- sapply(
     data[, varsScoff]
     , function(x) ifelse(is.na(x), 0, x))
   cat('SCOFF Total \n')
   print(f_tableNA(data$scoreSCOFFTotal))
-  cat('SCOFF Items \n')
-  print(apply(data[, varsScoff], 2, f_tableNA))
   
+  data$SCOFF1 <- factor(data$SCOFF_1, labels = c('0 No', '1 Yes'))
+  data$SCOFF2 <- factor(data$SCOFF_2, labels = c('0 No', '1 Yes'))
+  data$SCOFF3 <- factor(data$SCOFF_3, labels = c('0 No', '1 Yes'))
+  data$SCOFF4 <- factor(data$SCOFF_4, labels = c('0 No', '1 Yes'))
+  data$SCOFF5 <- factor(data$SCOFF_5, labels = c('0 No', '1 Yes'))
+  cat('SCOFF Items \n')
+  print(apply(data[, gsub("_", "", varsScoff)], 2, f_tableNA))
+  
+  for(i in 1:5)
+    Hmisc::label(data[, paste0("SCOFF", i)]) <- dsItems$Question[dsItems$Item == paste0("SCOFF", i)]
+
   return(data)
 }
