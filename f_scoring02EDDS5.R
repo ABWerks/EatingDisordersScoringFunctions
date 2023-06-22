@@ -116,23 +116,23 @@ f_scoringEDDS5 <- function(data){
   # Missing
   # Recode missing to zero
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-  data$EDDS_1[is.na(data$EDDS_1)] <- 0 
-  data$EDDS_2[is.na(data$EDDS_2)] <- 0 
-  data$EDDS_3[is.na(data$EDDS_3)] <- 0 
-  data$EDDS_4[is.na(data$EDDS_4)] <- 0 
-  data$EDDS_5[is.na(data$EDDS_5)] <- 0 
-  data$EDDS_7[is.na(data$EDDS_7)] <- 0 
-  data$EDDS_8[is.na(data$EDDS_8)] <- 0 
-  data$EDDS_9[is.na(data$EDDS_9)] <- 0 
-  data$EDDS_10[is.na(data$EDDS_10)] <- 0 
-  data$EDDS_11[is.na(data$EDDS_11)] <- 0 
-  data$EDDS_12[is.na(data$EDDS_12)] <- 0 
-  data$EDDS_13[is.na(data$EDDS_13)] <- 0 
-  data$EDDS_14[is.na(data$EDDS_14)] <- 0 
-  data$EDDS_15[is.na(data$EDDS_15)] <- 0 
-  data$EDDS_16[is.na(data$EDDS_16)] <- 0 
-  data$EDDS_17[is.na(data$EDDS_17)] <- 0 
-  data$EDDS_18[is.na(data$EDDS_18)] <- 0 
+  data$EDDS1 <- data$EDDS_1; data$EDDS1[is.na(data$EDDS1)] <- 0 
+  data$EDDS2 <- data$EDDS_2; data$EDDS2[is.na(data$EDDS2)] <- 0 
+  data$EDDS3 <- data$EDDS_3; data$EDDS3[is.na(data$EDDS3)] <- 0 
+  data$EDDS4 <- data$EDDS_4; data$EDDS4[is.na(data$EDDS4)] <- 0 
+  data$EDDS5 <- data$EDDS_5; data$EDDS5[is.na(data$EDDS5)] <- 0 
+  data$EDDS7 <- data$EDDS_7; data$EDDS7[is.na(data$EDDS7)] <- 0 
+  data$EDDS8 <- data$EDDS_8; data$EDDS8[is.na(data$EDDS8)] <- 0 
+  data$EDDS9 <- data$EDDS_9; data$EDDS9[is.na(data$EDDS9)] <- 0 
+  data$EDDS10 <- data$EDDS_10; data$EDDS10[is.na(data$EDDS10)] <- 0 
+  data$EDDS11 <- data$EDDS_11; data$EDDS11[is.na(data$EDDS11)] <- 0 
+  data$EDDS12 <- data$EDDS_12; data$EDDS12[is.na(data$EDDS12)] <- 0 
+  data$EDDS13 <- data$EDDS_13; data$EDDS13[is.na(data$EDDS13)] <- 0 
+  data$EDDS14 <- data$EDDS_14; data$EDDS14[is.na(data$EDDS14)] <- 0 
+  data$EDDS15 <- data$EDDS_15; data$EDDS15[is.na(data$EDDS15)] <- 0 
+  data$EDDS16 <- data$EDDS_16; data$EDDS16[is.na(data$EDDS16)] <- 0 
+  data$EDDS17 <- data$EDDS_17; data$EDDS17[is.na(data$EDDS17)] <- 0 
+  data$EDDS18 <- data$EDDS_18; data$EDDS18[is.na(data$EDDS18)] <- 0 
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
   # EDDS19 -> EDDS19: should be coded in total kg for BMI calculation to be accurate.
   # 19. How much do you weigh?  If uncertain, please give your best estimate. __________lbs.
@@ -213,8 +213,9 @@ f_scoringEDDS5 <- function(data){
       data$EDDS20Numeric > 100
       , NA
       , data$EDDS20Numeric))
+  data$EDDS20 <- data$EDDS20Numeric    
   cat('Current height values aka EDDS20\n')
-  print(f_tableNA(data$EDDS20Numeric))
+  print(f_tableNA(data$EDDS20))
   
   # data$EDDS21 <- data$EDDS_21 
   data$EDDS21 <- as.numeric(gsub("s", "", gsub("ish", "", gsub("(\\d+)\\s?\\lbs?", "\\1", data$EDDS_21))))
@@ -453,8 +454,8 @@ f_scoringEDDS5 <- function(data){
   # If (EDDS19<=(0.9*(EDDS21))) WTLOSS=1.  
   # RECODE WTLOSS (999=SYSMIS).
   data$WTLOSS <- ifelse(
-    !is.na(data$highest_weight) & !is.na(data$EDDS19) &
-      data$EDDS19 > data$highest_weight*0.9
+    !is.na(data$EDDS21) & !is.na(data$EDDS19) &
+      data$EDDS19 > data$EDDS21*0.9
     , 0
     , 1
   )
@@ -791,7 +792,7 @@ f_scoringEDDS5 <- function(data){
   # edds13 - edds17 are treated as continuous
   data$EDDS18 <- factor(data$EDDS_18, labels = c("0 Not At All", "1", "2 Slightly", "3", "4 Moderately", "5", "6 Extremely"))
 
-  for(i in 1:18)
+  for(i in 1:21)
     Hmisc::label(data[, paste0("EDDS", i)]) <- dsItems$Question[dsItems$Item == paste0("EDDS", i)]
 
   return(data)
