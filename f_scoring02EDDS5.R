@@ -55,6 +55,8 @@
 #   EDDS16	Engaged in more intense exercise specifically to counteract the effects of overeating?  (write in number of times)
 #   EDDS17	How many times per month on average over the past 3 months have you eaten after awakening from sleep or eaten an unusually large amount of food after your evening meal and felt distressed by the night eating?  (write in number of times)
 #   EDDS18	How much do eating or body image problems impact your relationships with friends and family, work performance, and school performance? (select the best number)
+#   EDDS19	How much do you weigh (lbs)? If uncertain, please give your best estimate.
+#   EDDS20	How tall are you? Please specify in inches (5 ft.= 60 in.)
 #
 #   Each question is labeled with the number preceded by EDDS
 #   “Yes” is coded as 1, and “No” is coded as 0.
