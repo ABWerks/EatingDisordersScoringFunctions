@@ -77,6 +77,7 @@
 #     EDDS19: current weight. Should be kilograms, but Uncle Sam only deals by pounds  
 #     EDDS20: current height. Similar, should be centimeters but the code works in feet and inches.
 #       This item was very messy in my survey and needed several cleaning steps which you can ignore
+#     EDDS21: highest weight: same issues as EDDS20
 #     
 # Results:
 #   Returns the original survey with a bunch of new columns containing the scored 
@@ -133,90 +134,98 @@ f_scoringEDDS5 <- function(data){
   data$EDDS_17[is.na(data$EDDS_17)] <- 0 
   data$EDDS_18[is.na(data$EDDS_18)] <- 0 
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-  # EDDS19 -> current_weight: should be coded in total kg for BMI calculation to be accurate.
+  # EDDS19 -> EDDS19: should be coded in total kg for BMI calculation to be accurate.
   # 19. How much do you weigh?  If uncertain, please give your best estimate. __________lbs.
   # This is already cleaned up in ahead00_ETLFunction.R 
   cat("Table of current weight", "\n")
   print(table(data$EDDS_19, useNA = "ifany"))
-  data$current_weight <- as.numeric(gsub("\\?", "", gsub("(\\d+)\\s?\\lbs?", "\\1", data$EDDS_19)))
+  # data$EDDS19 <- data$EDDS_19
+  data$EDDS19 <- as.numeric(gsub("\\?", "", gsub("(\\d+)\\s?\\lbs?", "\\1", data$EDDS_19)))
   cat("Summary of current weight", "\n")
-  print(summary(data$current_weight))
+  print(summary(data$EDDS19))
   
-  # EDDS20 -> current_height: should be coded in total cm for the BMI calculation to be accurate.
+  # EDDS20 -> EDDS20: should be coded in total cm for the BMI calculation to be accurate.
   # 20. How tall are you?  Please specify in inches (5 ft.= 60 in.) _________ in.
+  # data$EDDS20 <- data$EDDS_20
+  data$EDDS20 <- gsub("feet|ft|FT|â€|â€™", "'", data$EDDS_20)
+  
   # This part can be skipped if your data is already clean
-  data$current_height <- gsub("feet|ft|FT|â€|â€™", "'", data$EDDS_20)
-  data$current_height <- gsub("'\u009d", "\"", data$current_height)
-  data$current_height <- gsub("inches|in", "\"", data$current_height)
-  data$current_height <- gsub("'{2}", "\"", data$current_height)
-  data$current_height <- gsub("5 10", "5'10", data$current_height)
-  data$current_height <- gsub("\\s+", "", data$current_height)
-  data$current_height <- gsub(",", "", data$current_height)
-  data$current_height <- gsub("ish", "", data$current_height)
-  data$current_height <- gsub("5\"4", "5'4", data$current_height)
-  data$current_height <- gsub("5'04", "5'4", data$current_height)
-  data$current_height <- gsub("5”4", "5'4", data$current_height)
-  data$current_height <- gsub('"$', "", data$current_height)
-  data$current_height <- gsub('’', "'", data$current_height)
-  data$current_height <- gsub('”', '', data$current_height)
-  feet <- str_split(data$current_height, '\'')
+  data$EDDS20 <- gsub("'\u009d", "\"", data$EDDS20)
+  data$EDDS20 <- gsub("inches|in", "\"", data$EDDS20)
+  data$EDDS20 <- gsub("'{2}", "\"", data$EDDS20)
+  data$EDDS20 <- gsub("5 10", "5'10", data$EDDS20)
+  data$EDDS20 <- gsub("\\s+", "", data$EDDS20)
+  data$EDDS20 <- gsub(",", "", data$EDDS20)
+  data$EDDS20 <- gsub("ish", "", data$EDDS20)
+  data$EDDS20 <- gsub("5\"4", "5'4", data$EDDS20)
+  data$EDDS20 <- gsub("5'04", "5'4", data$EDDS20)
+  data$EDDS20 <- gsub("5”4", "5'4", data$EDDS20)
+  data$EDDS20 <- gsub('"$', "", data$EDDS20)
+  data$EDDS20 <- gsub('’', "'", data$EDDS20)
+  data$EDDS20 <- gsub('”', '', data$EDDS20)
+  feet <- str_split(data$EDDS20, '\'')
 
   # This part can be skipped if your data is already clean
-  data$current_heightNumeric <- unlist(lapply(feet, f_heightNumeric))
-  data$current_heightNumeric[data$current_height == "5/2"] <- 62
-  data$current_heightNumeric[data$current_height == "5/7"] <- 67
-  data$current_heightNumeric[data$current_height == "5\'3\""] <- 63
-  data$current_heightNumeric[data$current_height == "5\'7\""] <- 67
-  data$current_heightNumeric[data$current_height == "5\"-08"] <- 68
-  data$current_heightNumeric[data$current_height == "64\""] <- 64
-  data$current_heightNumeric[data$current_height == "66\"c"] <- 66
-  data$current_heightNumeric[data$current_height == "6'"] <- 72
-  data$current_heightNumeric[data$current_height == "6-"] <- 72
-  data$current_heightNumeric[data$current_height == "6-"] <- 72
-  data$current_heightNumeric[data$current_height == "5'10\""] <- 70
-  data$current_heightNumeric[data$current_height == "70\""] <- 70
-  data$current_heightNumeric[data$current_height == "70”"] <- 70
-  data$current_heightNumeric[data$current_height == '5’ 7”'] <- 67
-  data$current_heightNumeric[data$current_height == '64”'] <- 64
-  data$current_heightNumeric[data$current_height == '5’3”'] <- 63
-  data$current_heightNumeric[data$current_height == '5’7”'] <- 67
-  data$current_heightNumeric[data$current_height == '5’10”'] <- 70
-  data$current_heightNumeric[data$current_height == '5’3'] <- 63
-  data$current_heightNumeric[data$current_height == '5’2'] <- 62
-  data$current_heightNumeric[data$current_height == '5’5'] <- 65
-  data$current_heightNumeric[data$current_height == '5’11'] <- 71
-  data$current_heightNumeric[data$current_height == '5”4'] <- 64
+  data$EDDS20Numeric <- unlist(lapply(feet, f_heightNumeric))
+  data$EDDS20Numeric[data$EDDS20 == "5/2"] <- 62
+  data$EDDS20Numeric[data$EDDS20 == "5/7"] <- 67
+  data$EDDS20Numeric[data$EDDS20 == "5\'3\""] <- 63
+  data$EDDS20Numeric[data$EDDS20 == "5\'7\""] <- 67
+  data$EDDS20Numeric[data$EDDS20 == "5\"-08"] <- 68
+  data$EDDS20Numeric[data$EDDS20 == "64\""] <- 64
+  data$EDDS20Numeric[data$EDDS20 == "66\"c"] <- 66
+  data$EDDS20Numeric[data$EDDS20 == "6'"] <- 72
+  data$EDDS20Numeric[data$EDDS20 == "6-"] <- 72
+  data$EDDS20Numeric[data$EDDS20 == "6-"] <- 72
+  data$EDDS20Numeric[data$EDDS20 == "5'10\""] <- 70
+  data$EDDS20Numeric[data$EDDS20 == "70\""] <- 70
+  data$EDDS20Numeric[data$EDDS20 == "70”"] <- 70
+  data$EDDS20Numeric[data$EDDS20 == '5’ 7”'] <- 67
+  data$EDDS20Numeric[data$EDDS20 == '64”'] <- 64
+  data$EDDS20Numeric[data$EDDS20 == '5’3”'] <- 63
+  data$EDDS20Numeric[data$EDDS20 == '5’7”'] <- 67
+  data$EDDS20Numeric[data$EDDS20 == '5’10”'] <- 70
+  data$EDDS20Numeric[data$EDDS20 == '5’3'] <- 63
+  data$EDDS20Numeric[data$EDDS20 == '5’2'] <- 62
+  data$EDDS20Numeric[data$EDDS20 == '5’5'] <- 65
+  data$EDDS20Numeric[data$EDDS20 == '5’11'] <- 71
+  data$EDDS20Numeric[data$EDDS20 == '5”4'] <- 64
   cat('Oddball heights\n')
-  print(data$current_height[is.na(data$current_heightNumeric)])
+  print(data$EDDS20[is.na(data$EDDS20Numeric)])
   
   # This part can be skipped if your data is already clean
-  data$current_heightNumeric[is.na(data$current_heightNumeric) & grepl('5.3.', data$current_height)] <- 63
-  data$current_heightNumeric[is.na(data$current_heightNumeric) & grepl('5.2', data$current_height)] <- 62
-  data$current_heightNumeric[is.na(data$current_heightNumeric) & grepl('5.3', data$current_height)] <- 63
-  data$current_heightNumeric[is.na(data$current_heightNumeric) & grepl('5.4', data$current_height)] <- 64
-  data$current_heightNumeric[is.na(data$current_heightNumeric) & grepl('5.5', data$current_height)] <- 65
-  data$current_heightNumeric[is.na(data$current_heightNumeric) & grepl('5.11', data$current_height)] <- 71
-  data$current_heightNumeric[is.na(data$current_heightNumeric) & grepl('5.7.', data$current_height)] <- 67
-  data$current_heightNumeric[is.na(data$current_heightNumeric) & grepl('5.10.', data$current_height)] <- 70
-  data$current_heightNumeric[is.na(data$current_heightNumeric) & grepl('64.', data$current_height)] <- 64
-  data$current_heightNumeric[is.na(data$current_heightNumeric) & grepl('70.', data$current_height)] <- 70
+  data$EDDS20Numeric[is.na(data$EDDS20Numeric) & grepl('5.3.', data$EDDS20)] <- 63
+  data$EDDS20Numeric[is.na(data$EDDS20Numeric) & grepl('5.2', data$EDDS20)] <- 62
+  data$EDDS20Numeric[is.na(data$EDDS20Numeric) & grepl('5.3', data$EDDS20)] <- 63
+  data$EDDS20Numeric[is.na(data$EDDS20Numeric) & grepl('5.4', data$EDDS20)] <- 64
+  data$EDDS20Numeric[is.na(data$EDDS20Numeric) & grepl('5.5', data$EDDS20)] <- 65
+  data$EDDS20Numeric[is.na(data$EDDS20Numeric) & grepl('5.11', data$EDDS20)] <- 71
+  data$EDDS20Numeric[is.na(data$EDDS20Numeric) & grepl('5.7.', data$EDDS20)] <- 67
+  data$EDDS20Numeric[is.na(data$EDDS20Numeric) & grepl('5.10.', data$EDDS20)] <- 70
+  data$EDDS20Numeric[is.na(data$EDDS20Numeric) & grepl('64.', data$EDDS20)] <- 64
+  data$EDDS20Numeric[is.na(data$EDDS20Numeric) & grepl('70.', data$EDDS20)] <- 70
   
   # This part can be skipped if your data is already clean
-  data$current_heightNumeric <- ifelse(
-    data$current_heightNumeric == 5
+  data$EDDS20Numeric <- ifelse(
+    data$EDDS20Numeric == 5
     , 60
     , ifelse(
-      data$current_heightNumeric > 100
+      data$EDDS20Numeric > 100
       , NA
-      , data$current_heightNumeric))
+      , data$EDDS20Numeric))
   cat('Current height values aka EDDS20\n')
-  print(f_tableNA(data$current_heightNumeric))
+  print(f_tableNA(data$EDDS20Numeric))
   
+  # data$EDDS21 <- data$EDDS_21 
+  data$EDDS21 <- as.numeric(gsub("s", "", gsub("ish", "", gsub("(\\d+)\\s?\\lbs?", "\\1", data$EDDS_21))))
+  cat("Summary of highest weight: \n")
+  print(summary(data$EDDS_21))
+
   # BMI
   # (EDDS19)/((EDDS20/100)**2)
   # https://www.cdc.gov/nccdphp/dnpao/growthcharts/training/bmiage/page5_2.html
   # Formula: weight (lb) / [height (in)]2 x 703
-  data$BMI <- 703*(data$current_weight / (data$current_heightNumeric)^2)
+  data$BMI <- 703*(data$EDDS19 / (data$EDDS20Numeric)^2)
   cat('Current BMI values\n')
   print(summary(data$BMI))
   
@@ -444,12 +453,12 @@ f_scoringEDDS5 <- function(data){
   # If (EDDS19<=(0.9*(EDDS21))) WTLOSS=1.  
   # RECODE WTLOSS (999=SYSMIS).
   data$WTLOSS <- ifelse(
-    !is.na(data$highest_weight) & !is.na(data$current_weight) &
-      data$current_weight > data$highest_weight*0.9
+    !is.na(data$highest_weight) & !is.na(data$EDDS19) &
+      data$EDDS19 > data$highest_weight*0.9
     , 0
     , 1
   )
-  data$WTLOSS[is.na(data$highest_weight) | is.na(data$current_weight)] <- NA
+  data$WTLOSS[is.na(data$highest_weight) | is.na(data$EDDS19)] <- NA
 
   # EDDSDX 
   # EDDS_1: Have you felt fat? 
