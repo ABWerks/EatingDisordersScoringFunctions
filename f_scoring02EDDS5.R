@@ -31,14 +31,35 @@
 #   publisher={Wiley Online Library}
 # }
 # 
+# Depends: Hmisc
+#
 # Arguments:
-#   data: The survey
+#   data: The survey. Assumes item names in the original survey have underscores ~ EDDS_1, EDDS_2, etc...
 #
 # Details:
+#   EDDS1	Have you felt fat?
+#   EDDS2	Have you had a definite fear that you might gain weight or become fat?
+#   EDDS3	Has your weight or shape influenced how you judge yourself as a person?
+#   EDDS4	During the past 3 months, have there been times when you have eaten what other people would regard as an unusually large amount of food (e.g., a pint of ice cream) given the circumstances?
+#   EDDS5	During the times when you ate an unusually large amount of food, did you experience a loss of control (e.g., felt you couldn’t stop eating or control what or how much you were eating)?
+#   EDDS6	How many times per month on average over the past 3 months have you eaten an unusually large amount of food and experienced a loss of control? (write in number of times)
+#   EDDS7	Eat much more rapidly than normal?
+#   EDDS8	Eat until you feel uncomfortably full?
+#   EDDS9	Eat large amounts of food when you didn’t feel physically hungry?
+#   EDDS10	Eat alone because you were embarrassed by how much you were eating?
+#   EDDS11	Feel disgusted with yourself, depressed, or very guilty after overeating?
+#   EDDS12	If you have episodes of uncontrollable overeating, does it make you very upset?
+#   EDDS13	Made yourself vomit? (write in number of times)
+#   EDDS14	Used laxatives or diuretics? (write in number of times)
+#   EDDS15	Fasted (skipped at least 2 meals in a row)? (write in number of times)
+#   EDDS16	Engaged in more intense exercise specifically to counteract the effects of overeating?  (write in number of times)
+#   EDDS17	How many times per month on average over the past 3 months have you eaten after awakening from sleep or eaten an unusually large amount of food after your evening meal and felt distressed by the night eating?  (write in number of times)
+#   EDDS18	How much do eating or body image problems impact your relationships with friends and family, work performance, and school performance? (select the best number)
+#
 #   Each question is labeled with the number preceded by EDDS
 #   “Yes” is coded as 1, and “No” is coded as 0.
 #   For the BMI calculations: Male is coded as 1, and Female is coded as 2.
-#   Introductory item for the EDDS-5: edds_txt0 EATING BEHAVIORS  Please carefully complete all questions, 
+#   Introductory item for the EDDS-5: EDDS_txt0 EATING BEHAVIORS  Please carefully complete all questions, 
 #     choosing “Not at all” or 0 for questions below that do not apply.        
 #     Over the past 3 months . . . (select the best number for each question using the scale below)
 #   To improve the sensitivity of the diagnosis, we included several modificaitons to the original scoring algorithm
@@ -50,7 +71,7 @@
 #
 # Gotchas:
 #   This function cleans several variables that contain open text:
-#   Careful that all of the possible values are coded accurately
+#   Careful that all of the possible mistakes are coded accurately
 #     EDDS19: current weight. Should be kilograms, but Uncle Sam only deals by pounds  
 #     EDDS20: current height. Similar, should be centimeters but the code works in feet and inches.
 #       This item was very messy in my survey and needed several cleaning steps which you can ignore
@@ -64,6 +85,10 @@ library(tidyr)
 library(dplyr)
 library(tableone)
 library(stringr)
+
+# Items And Questions
+dsItems  <- read.csv("EatingDisorderItemsAndQuestions.csv")
+dsItems <- dsItems[grepl("^(EDDS)", dsItems$Item, ignore.case = T), ]
 
 # table shortcut
 f_tableNA <- function(...) 
@@ -83,41 +108,42 @@ f_heightNumeric <- function(x){
 }
 
 f_scoringEDDS5 <- function(data){
-  varsEDDS5 <- colnames(data)[grepl("^edds_", colnames(data))] 
+  varsEDDS5 <- colnames(data)[grepl("^EDDS_", colnames(data))] 
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
   # Missing
   # Recode missing to zero
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-  data$edds_1[is.na(data$edds_1)] <- 0 
-  data$edds_2[is.na(data$edds_2)] <- 0 
-  data$edds_3[is.na(data$edds_3)] <- 0 
-  data$edds_4[is.na(data$edds_4)] <- 0 
-  data$edds_5[is.na(data$edds_5)] <- 0 
-  data$edds_7[is.na(data$edds_7)] <- 0 
-  data$edds_8[is.na(data$edds_8)] <- 0 
-  data$edds_9[is.na(data$edds_9)] <- 0 
-  data$edds_10[is.na(data$edds_10)] <- 0 
-  data$edds_11[is.na(data$edds_11)] <- 0 
-  data$edds_12[is.na(data$edds_12)] <- 0 
-  data$edds_13[is.na(data$edds_13)] <- 0 
-  data$edds_14[is.na(data$edds_14)] <- 0 
-  data$edds_15[is.na(data$edds_15)] <- 0 
-  data$edds_16[is.na(data$edds_16)] <- 0 
-  data$edds_17[is.na(data$edds_17)] <- 0 
-  data$edds_18[is.na(data$edds_18)] <- 0 
+  data$EDDS_1[is.na(data$EDDS_1)] <- 0 
+  data$EDDS_2[is.na(data$EDDS_2)] <- 0 
+  data$EDDS_3[is.na(data$EDDS_3)] <- 0 
+  data$EDDS_4[is.na(data$EDDS_4)] <- 0 
+  data$EDDS_5[is.na(data$EDDS_5)] <- 0 
+  data$EDDS_7[is.na(data$EDDS_7)] <- 0 
+  data$EDDS_8[is.na(data$EDDS_8)] <- 0 
+  data$EDDS_9[is.na(data$EDDS_9)] <- 0 
+  data$EDDS_10[is.na(data$EDDS_10)] <- 0 
+  data$EDDS_11[is.na(data$EDDS_11)] <- 0 
+  data$EDDS_12[is.na(data$EDDS_12)] <- 0 
+  data$EDDS_13[is.na(data$EDDS_13)] <- 0 
+  data$EDDS_14[is.na(data$EDDS_14)] <- 0 
+  data$EDDS_15[is.na(data$EDDS_15)] <- 0 
+  data$EDDS_16[is.na(data$EDDS_16)] <- 0 
+  data$EDDS_17[is.na(data$EDDS_17)] <- 0 
+  data$EDDS_18[is.na(data$EDDS_18)] <- 0 
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
   # EDDS19 -> current_weight: should be coded in total kg for BMI calculation to be accurate.
   # 19. How much do you weigh?  If uncertain, please give your best estimate. __________lbs.
   # This is already cleaned up in ahead00_ETLFunction.R 
   cat("Table of current weight", "\n")
-  print(table(data$edds_19, useNA = "ifany"))
-  data$current_weight <- as.numeric(gsub("\\?", "", gsub("(\\d+)\\s?\\lbs?", "\\1", data$edds_19)))
+  print(table(data$EDDS_19, useNA = "ifany"))
+  data$current_weight <- as.numeric(gsub("\\?", "", gsub("(\\d+)\\s?\\lbs?", "\\1", data$EDDS_19)))
   cat("Summary of current weight", "\n")
   print(summary(data$current_weight))
   
   # EDDS20 -> current_height: should be coded in total cm for the BMI calculation to be accurate.
   # 20. How tall are you?  Please specify in inches (5 ft.= 60 in.) _________ in.
-  data$current_height <- gsub("feet|ft|FT|â€|â€™", "'", data$edds_20)
+  # This part can be skipped if your data is already clean
+  data$current_height <- gsub("feet|ft|FT|â€|â€™", "'", data$EDDS_20)
   data$current_height <- gsub("'\u009d", "\"", data$current_height)
   data$current_height <- gsub("inches|in", "\"", data$current_height)
   data$current_height <- gsub("'{2}", "\"", data$current_height)
@@ -133,6 +159,7 @@ f_scoringEDDS5 <- function(data){
   data$current_height <- gsub('”', '', data$current_height)
   feet <- str_split(data$current_height, '\'')
 
+  # This part can be skipped if your data is already clean
   data$current_heightNumeric <- unlist(lapply(feet, f_heightNumeric))
   data$current_heightNumeric[data$current_height == "5/2"] <- 62
   data$current_heightNumeric[data$current_height == "5/7"] <- 67
@@ -160,6 +187,7 @@ f_scoringEDDS5 <- function(data){
   cat('Oddball heights\n')
   print(data$current_height[is.na(data$current_heightNumeric)])
   
+  # This part can be skipped if your data is already clean
   data$current_heightNumeric[is.na(data$current_heightNumeric) & grepl('5.3.', data$current_height)] <- 63
   data$current_heightNumeric[is.na(data$current_heightNumeric) & grepl('5.2', data$current_height)] <- 62
   data$current_heightNumeric[is.na(data$current_heightNumeric) & grepl('5.3', data$current_height)] <- 63
@@ -171,6 +199,7 @@ f_scoringEDDS5 <- function(data){
   data$current_heightNumeric[is.na(data$current_heightNumeric) & grepl('64.', data$current_height)] <- 64
   data$current_heightNumeric[is.na(data$current_heightNumeric) & grepl('70.', data$current_height)] <- 70
   
+  # This part can be skipped if your data is already clean
   data$current_heightNumeric <- ifelse(
     data$current_heightNumeric == 5
     , 60
@@ -191,38 +220,38 @@ f_scoringEDDS5 <- function(data){
   
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
   # To adjust binge eating frequency in case of errors in recording:
-  # edds_4 4. During the past 3 months, have there been times when you have eaten 
+  # EDDS_4 4. During the past 3 months, have there been times when you have eaten 
   #   what other people would regard as an unusually large amount of food 
   #   (e.g., a pint of ice cream) given the circumstances?
-  # edds_5 5. During the times when you ate an unusually large amount of food, 
+  # EDDS_5 5. During the times when you ate an unusually large amount of food, 
   #   did you experience a loss of control (e.g., felt you couldn’t stop eating or 
   #   control what or how much you were eating)?
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
   # If (EDDS4=0 and (EDDS5=0 or N/A)) EDDS6=0.
-  # edds_6 6. How many times per month on average over the past 3 months have you 
+  # EDDS_6 6. How many times per month on average over the past 3 months have you 
   #   eaten an unusually large amount of food and experienced a loss of control? 
   #   (write in number of times) 
-  data$EDDS6 <- ifelse((!is.na(data$edds_4) & data$edds_4 == 0) & (data$edds_5 == 0 | is.na(data$edds_5)), 0, data$edds_6)
+  data$EDDS6 <- ifelse((!is.na(data$EDDS_4) & data$EDDS_4 == 0) & (data$EDDS_5 == 0 | is.na(data$EDDS_5)), 0, data$EDDS_6)
   data$EDDS6[is.na(data$EDDS6)] <- 0
   # During episodes of overeating with a loss of control, did you . . .
-  # edds_7 7. Eat much more rapidly than normal?
+  # EDDS_7 7. Eat much more rapidly than normal?
   # If (EDDS4=0 and EDDS5=0) EDDS7=0.
-  data$EDDS7 <- ifelse((!is.na(data$edds_4) & data$edds_4 == 0) & (is.na(data$edds_5) | data$edds_5 == 0), 0, data$edds_7)
-  # edds_8 8. Eat until you feel uncomfortably full?
+  data$EDDS7 <- ifelse((!is.na(data$EDDS_4) & data$EDDS_4 == 0) & (is.na(data$EDDS_5) | data$EDDS_5 == 0), 0, data$EDDS_7)
+  # EDDS_8 8. Eat until you feel uncomfortably full?
   # If (EDDS4=0 and EDDS5=0) EDDS8=0.
-  data$EDDS8 <- ifelse((!is.na(data$edds_4) & data$edds_4 == 0) & (is.na(data$edds_5) | data$edds_5 == 0), 0, data$edds_8)
-  # edds_9    9. Eat large amounts of food when you didn’t feel physically hungry?  
+  data$EDDS8 <- ifelse((!is.na(data$EDDS_4) & data$EDDS_4 == 0) & (is.na(data$EDDS_5) | data$EDDS_5 == 0), 0, data$EDDS_8)
+  # EDDS_9    9. Eat large amounts of food when you didn’t feel physically hungry?  
   # If (EDDS4=0 and EDDS5=0) EDDS9=0.
-  data$EDDS9 <- ifelse((!is.na(data$edds_4) & data$edds_4 == 0) & (is.na(data$edds_5) | data$edds_5 == 0), 0, data$edds_9)
-  # edds_10      10. Eat alone because you were embarrassed by how much you were eating?    
+  data$EDDS9 <- ifelse((!is.na(data$EDDS_4) & data$EDDS_4 == 0) & (is.na(data$EDDS_5) | data$EDDS_5 == 0), 0, data$EDDS_9)
+  # EDDS_10      10. Eat alone because you were embarrassed by how much you were eating?    
   # If (EDDS4=0 and EDDS5=0) EDDS10=0.
-  data$EDDS10 <- ifelse((!is.na(data$edds_4) & data$edds_4 == 0) & (is.na(data$edds_5) | data$edds_5 == 0), 0, data$edds_10)
-  # edds_11        11. Feel disgusted with yourself, depressed, or very guilty after overeating?      
+  data$EDDS10 <- ifelse((!is.na(data$EDDS_4) & data$EDDS_4 == 0) & (is.na(data$EDDS_5) | data$EDDS_5 == 0), 0, data$EDDS_10)
+  # EDDS_11        11. Feel disgusted with yourself, depressed, or very guilty after overeating?      
   # If (EDDS4=0 and EDDS5=0) EDDS11=0.
-  data$EDDS11 <- ifelse((!is.na(data$edds_4) & data$edds_4 == 0) & (is.na(data$edds_5) | data$edds_5 == 0), 0, data$edds_11)
-  # edds_12          12. If you have episodes of uncontrollable overeating, does it make you very upset?        
+  data$EDDS11 <- ifelse((!is.na(data$EDDS_4) & data$EDDS_4 == 0) & (is.na(data$EDDS_5) | data$EDDS_5 == 0), 0, data$EDDS_11)
+  # EDDS_12          12. If you have episodes of uncontrollable overeating, does it make you very upset?        
   # If (EDDS4=0 and EDDS5=0) EDDS12=0.
-  data$EDDS12 <- ifelse((!is.na(data$edds_4) & data$edds_4 == 0) & (is.na(data$edds_5) | data$edds_5 == 0), 0, data$edds_12)
+  data$EDDS12 <- ifelse((!is.na(data$EDDS_4) & data$EDDS_4 == 0) & (is.na(data$EDDS_5) | data$EDDS_5 == 0), 0, data$EDDS_12)
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
   # For Diagnosis
   # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -231,9 +260,9 @@ f_scoringEDDS5 <- function(data){
   data$FEATURE <- rowSums(data[, paste("EDDS", 7:11, sep = "")])
 
   ## Modification 3A
-  ## Use the default edds responses not the recoded EDDS items
-  ## SUM.1(edds_7, edds_8, edds_9, edds_10, edds_11).  
-  data$FEATURE_Mod3 <- rowSums(data[, paste("edds", 7:11, sep = "_")])
+  ## Use the default EDDS responses not the recoded EDDS items
+  ## SUM.1(EDDS_7, EDDS_8, EDDS_9, EDDS_10, EDDS_11).  
+  data$FEATURE_Mod3 <- rowSums(data[, paste("EDDS", 7:11, sep = "_")])
   
   # BINGE
   # COMPUTE BINGE=999.
@@ -242,33 +271,33 @@ f_scoringEDDS5 <- function(data){
   # If (EDDS4=1 and EDDS5=1 and EDDS6>=4) BINGE=2.
   # RECODE BINGE (999=SYSMIS).
   data$BINGE <- ifelse(
-    data$edds_4 == 1 & data$edds_5 == 1 & data$EDDS6 >= 4
+    data$EDDS_4 == 1 & data$EDDS_5 == 1 & data$EDDS6 >= 4
     , 2
     , ifelse(
-      data$edds_4 == 1 & data$edds_5 == 1 & data$EDDS6 >= 2 & data$EDDS6 < 4
+      data$EDDS_4 == 1 & data$EDDS_5 == 1 & data$EDDS6 >= 2 & data$EDDS6 < 4
       , 1
       , ifelse(
-        data$edds_4 == 0
+        data$EDDS_4 == 0
         , 0
         , 999
       )))
   data$BINGE[data$BINGE == 999] <- NA
   
   ## Modification 3
-  ## Use the default edds responses not the recoded EDDS items
+  ## Use the default EDDS responses not the recoded EDDS items
   # COMPUTE BINGE=999.  
   # If (EDDS4=1 and EDDS5=1) BINGE=2.  
   # If (EDDS6>=2) BINGE=2.  
   # RECODE BINGE (999=SYSMIS).  
   
   data$BINGE_Mod3 <- ifelse(
-    (data$edds_4 == 1 & data$edds_5 == 1) | data$edds_6 >= 2
+    (data$EDDS_4 == 1 & data$EDDS_5 == 1) | data$EDDS_6 >= 2
     , 2
     , ifelse(
-      (data$edds_4 == 1 & data$edds_5 == 1) | data$edds_6 == 1
+      (data$EDDS_4 == 1 & data$EDDS_5 == 1) | data$EDDS_6 == 1
       , 1
       , ifelse(
-        data$edds_4 == 0
+        data$EDDS_4 == 0
         , 0
         , 999
       )))
@@ -278,17 +307,17 @@ f_scoringEDDS5 <- function(data){
   # COMPUTE COMPSUM=999.
   # COMPUTE COMPSUM=SUM.2(EDDS13, EDDS14, EDDS15, EDDS16).
   # RECODE COMPSUM (999=SYSMIS).
-  # edds_txt2 In order to prevent weight gain or counteract the effects of eating, 
+  # EDDS_txt2 In order to prevent weight gain or counteract the effects of eating, 
   #   how many times per month on average over the past 3 months have you:
-  # edds_13 13. Made yourself vomit? (write in number of times)
-  # edds_14 14. Used laxatives or diuretics? (write in number of times)
-  # edds_15 15. Fasted (skipped at least 2 meals in a row)? (write in number of times)
-  # edds_16: Engaged in more intense exercise specifically to counteract the effects of overeating?   
-  data$COMPSUM <- rowSums(data[, paste("edds", 13:16, sep = "_")])
+  # EDDS_13 13. Made yourself vomit? (write in number of times)
+  # EDDS_14 14. Used laxatives or diuretics? (write in number of times)
+  # EDDS_15 15. Fasted (skipped at least 2 meals in a row)? (write in number of times)
+  # EDDS_16: Engaged in more intense exercise specifically to counteract the effects of overeating?   
+  data$COMPSUM <- rowSums(data[, paste("EDDS", 13:16, sep = "_")])
 
   # Karen Mitchell
   # COMPUTE COMPSUM=SUM.2(EDDS13, EDDS14).  
-  data$COMPSUM_KM <- rowSums(data[, paste("edds", 13:14, sep = "_")])
+  data$COMPSUM_KM <- rowSums(data[, paste("EDDS", 13:14, sep = "_")])
   
   # PEN
   # COMPUTE COMPEN=999.
@@ -330,23 +359,23 @@ f_scoringEDDS5 <- function(data){
   # PURGE
   # COMPUTE PURGE=999.
   # COMPUTE PURGE=SUM(EDDS13, EDDS14).
-  data$PURGE <- rowSums(data[, paste("edds", 13:14, sep = "_")])
+  data$PURGE <- rowSums(data[, paste("EDDS", 13:14, sep = "_")])
 
   # WTSHAP
-  # edds_3: Has your weight or shape influenced how you judge yourself as a person? 
+  # EDDS_3: Has your weight or shape influenced how you judge yourself as a person? 
   #     Not at all        Slightly     Moderately	 Extremely 
   # COMPUTE WTSHAP=999.  
   # If  EDDS3<6 WTSHAP=0. 
   # If  EDDS3>=2 WTSHAP=1. 
   # If  EDDS3>=4 WTSHAP=2.
   data$WTSHAP <- ifelse(
-    data$edds_3 >= 4 & data$edds_3 <=6
+    data$EDDS_3 >= 4 & data$EDDS_3 <=6
     , 2
     , ifelse(
-      data$edds_3 >= 2 & data$edds_3 < 4
+      data$EDDS_3 >= 2 & data$EDDS_3 < 4
       , 1
       , ifelse(
-        data$edds_3 < 2
+        data$EDDS_3 < 2
         , 0
         , 999))
   )
@@ -389,19 +418,19 @@ f_scoringEDDS5 <- function(data){
     , data$LOWBMI)
 
   # FEARWT 
-  # edds_2: Have you had a definite fear that you might gain weight or become fat? 
+  # EDDS_2: Have you had a definite fear that you might gain weight or become fat? 
   # COMPUTE FEARWT=999.  
   # If EDDS2<6 FEARWT=0.  
   # If EDDS2>=2 FEARWT=1.  
   # If EDDS2>=4 FEARWT=2.
   data$FEARWT <- ifelse(
-    data$edds_2 >= 4 & data$edds_2 <=6
+    data$EDDS_2 >= 4 & data$EDDS_2 <=6
     , 2
     , ifelse(
-      data$edds_2 >= 2 & data$edds_2 < 4
+      data$EDDS_2 >= 2 & data$EDDS_2 < 4
       , 1
       , ifelse(
-        data$edds_2 < 2
+        data$EDDS_2 < 2
         , 0
         , 999))
   )
@@ -421,10 +450,10 @@ f_scoringEDDS5 <- function(data){
   data$WTLOSS[is.na(data$highest_weight) | is.na(data$current_weight)] <- NA
 
   # EDDSDX 
-  # edds_1: Have you felt fat? 
-  # edds_17: How many times per month on average over the past 3 months have you eaten after 
+  # EDDS_1: Have you felt fat? 
+  # EDDS_17: How many times per month on average over the past 3 months have you eaten after 
   #   awakening from sleep or eaten an unusually large amount of food after your evening meal and felt distressed by the night eating? 
-  # edds_12: If you have episodes of uncontrollable overeating, does it make you very upset? 
+  # EDDS_12: If you have episodes of uncontrollable overeating, does it make you very upset? 
   # COMPUTE EDDSDX=999.  
   # If EDDS1<6 EDDSDX=0.  
   # If EDDS17>=4 EDDSDX=8.  
@@ -442,9 +471,9 @@ f_scoringEDDS5 <- function(data){
   # COMPUTE scoreEDDSDX=999.  
   data$scoreEDDSDX <- '999'
   # If EDDS1<6 scoreEDDSDX=0.
-  data$scoreEDDSDX[data$edds_1<6] <- '00 Ref'
+  data$scoreEDDSDX[data$EDDS_1<6] <- '00 Ref'
   # If EDDS17>=4 scoreEDDSDX=8.
-  data$scoreEDDSDX[data$edds_17>=4] <- '08 night eating syndrome'
+  data$scoreEDDSDX[data$EDDS_17>=4] <- '08 night eating syndrome'
   # If (PURGE>=4 and BINGE=0 and WTSHAP=2) scoreEDDSDX=7.  
   data$scoreEDDSDX[!is.na(data$PURGE) & !is.na(data$BINGE) & !is.na(data$WTSHAP) & 
               data$PURGE >= 4 & data$BINGE == 0 & data$WTSHAP == 2] <- '07 purging disorder'
@@ -470,7 +499,7 @@ f_scoringEDDS5 <- function(data){
   data$scoreEDDSDX[!is.na(data$LOWBMI) & !is.na(data$COMPEN) & !is.na(data$WTSHAP) &
               data$LOWBMI == 1 & data$COMPEN == 2 & data$WTSHAP == 2] <- '01 AN'
   # If EDDS18<3 scoreEDDSDX=0.
-  data$scoreEDDSDX[data$edds_18<3] <- '00 Ref'
+  data$scoreEDDSDX[data$EDDS_18<3] <- '00 Ref'
   
   cat('EDDSDX composite factor default method:\n')
   print(f_tableNA(data$scoreEDDSDX))
@@ -480,9 +509,9 @@ f_scoringEDDS5 <- function(data){
   # COMPUTE scoreEDDSDX_KM=999.  
   data$scoreEDDSDX_KM <- '999'
   # If EDDS1<6 scoreEDDSDX_KM=0.
-  data$scoreEDDSDX_KM[data$edds_1<6] <- '00 Ref'
+  data$scoreEDDSDX_KM[data$EDDS_1<6] <- '00 Ref'
   # If EDDS17>=4 scoreEDDSDX_KM=8.
-  data$scoreEDDSDX_KM[data$edds_17>=4] <- '08 night eating syndrome'
+  data$scoreEDDSDX_KM[data$EDDS_17>=4] <- '08 night eating syndrome'
   # If (PURGE>=4 and BINGE=0 and WTSHAP=2) scoreEDDSDX_KM=7.  
   data$scoreEDDSDX_KM[!is.na(data$PURGE) & !is.na(data$BINGE) & !is.na(data$WTSHAP) & 
                         data$PURGE >= 4 & data$BINGE == 0 & data$WTSHAP == 2] <- '07 purging disorder'
@@ -508,7 +537,7 @@ f_scoringEDDS5 <- function(data){
   data$scoreEDDSDX_KM[!is.na(data$LOWBMI) & !is.na(data$COMPEN_KM) & !is.na(data$WTSHAP) &
                         data$LOWBMI == 1 & data$COMPEN_KM == 2 & data$WTSHAP == 2] <- '01 AN'
   # If EDDS18<3 scoreEDDSDX_KM=0.
-  data$scoreEDDSDX_KM[data$edds_18<3] <- '00 Ref'
+  data$scoreEDDSDX_KM[data$EDDS_18<3] <- '00 Ref'
   
   cat('EDDSDX_KM composite factor\n')
   print(f_tableNA(data$scoreEDDSDX_KM))
@@ -520,21 +549,21 @@ f_scoringEDDS5 <- function(data){
   data$scoreEDDSDX_Mod3A <- '999'
   data$scoreEDDSDX_Mod3B <- '999'
   # If EDDS1<6 scoreEDDSDX_Mod3=0.
-  data$scoreEDDSDX_Mod3A[data$edds_1<6] <- '00 Ref'
-  data$scoreEDDSDX_Mod3B[data$edds_1<6] <- '00 Ref'
+  data$scoreEDDSDX_Mod3A[data$EDDS_1<6] <- '00 Ref'
+  data$scoreEDDSDX_Mod3B[data$EDDS_1<6] <- '00 Ref'
   # If EDDS17>=4 scoreEDDSDX_Mod3=8.
-  data$scoreEDDSDX_Mod3A[data$edds_17>=4] <- '08 night eating syndrome'
-  data$scoreEDDSDX_Mod3B[data$edds_17>=4] <- '08 night eating syndrome'
+  data$scoreEDDSDX_Mod3A[data$EDDS_17>=4] <- '08 night eating syndrome'
+  data$scoreEDDSDX_Mod3B[data$EDDS_17>=4] <- '08 night eating syndrome'
   # If (PURGE>=4 and BINGE_Mod3=0 and WTSHAP=2) scoreEDDSDX_Mod3=7.  
   data$scoreEDDSDX_Mod3A[!is.na(data$PURGE) & !is.na(data$BINGE_Mod3) & !is.na(data$WTSHAP) & 
               data$PURGE >= 4 & data$BINGE_Mod3 == 0 & data$WTSHAP == 2] <- '07 purging disorder'
   data$scoreEDDSDX_Mod3B[!is.na(data$PURGE) & !is.na(data$BINGE_Mod3) & !is.na(data$WTSHAP) & 
               data$PURGE >= 4 & data$BINGE_Mod3 == 0 & data$WTSHAP == 2] <- '07 purging disorder'
   # If (BINGE_Mod3=1 and FEATURE_Mod3>=3 and EDDS12=1 and COMPEN=0) scoreEDDSDX_Mod3=6.  
-  data$scoreEDDSDX_Mod3A[!is.na(data$FEATURE_Mod3) & !is.na(data$BINGE_Mod3) & !is.na(data$COMPEN) & !is.na(data$edds_12) &
-              data$FEATURE_Mod3 >= 3 & data$BINGE_Mod3 == 1 & data$COMPEN == 0 & data$edds_12 == 1] <- '06 low frequency BED'
-  data$scoreEDDSDX_Mod3B[!is.na(data$FEATURE_Mod3) & !is.na(data$BINGE_Mod3) & !is.na(data$COMPEN) & !is.na(data$edds_12) &
-              data$FEATURE_Mod3 >= 3 & data$BINGE_Mod3 == 1 & data$COMPEN == 0 & data$edds_12 == 1] <- '06 low frequency BED'
+  data$scoreEDDSDX_Mod3A[!is.na(data$FEATURE_Mod3) & !is.na(data$BINGE_Mod3) & !is.na(data$COMPEN) & !is.na(data$EDDS_12) &
+              data$FEATURE_Mod3 >= 3 & data$BINGE_Mod3 == 1 & data$COMPEN == 0 & data$EDDS_12 == 1] <- '06 low frequency BED'
+  data$scoreEDDSDX_Mod3B[!is.na(data$FEATURE_Mod3) & !is.na(data$BINGE_Mod3) & !is.na(data$COMPEN) & !is.na(data$EDDS_12) &
+              data$FEATURE_Mod3 >= 3 & data$BINGE_Mod3 == 1 & data$COMPEN == 0 & data$EDDS_12 == 1] <- '06 low frequency BED'
   # If (BINGE_Mod3=1 and COMPEN=1 and WTSHAP=2) scoreEDDSDX_Mod3=5.  
   data$scoreEDDSDX_Mod3A[!is.na(data$WTSHAP) & !is.na(data$BINGE_Mod3) & !is.na(data$COMPEN) &
               data$WTSHAP == 2 & data$BINGE_Mod3 == 1 & data$COMPEN == 1] <- '05 low frequency BN'
@@ -547,8 +576,8 @@ f_scoringEDDS5 <- function(data){
               data$WTLOSS == 1 & data$FEARWT == 2 & data$WTSHAP == 2] <- '04 Atypical AN'
   
   ## If (BINGE_Mod3=2 and FEATURE_Mod3>=3 and EDDS12=1 and COMPEN=0) scoreEDDSDX_Mod3=3.  
-  data$scoreEDDSDX_Mod3A[!is.na(data$BINGE_Mod3) & !is.na(data$FEATURE_Mod3) & !is.na(data$COMPEN) & !is.na(data$edds_12) &
-              data$BINGE_Mod3 == 2 & data$FEATURE_Mod3 >= 3 & data$COMPEN == 0 & data$edds_12 == 1] <- '03 BED'
+  data$scoreEDDSDX_Mod3A[!is.na(data$BINGE_Mod3) & !is.na(data$FEATURE_Mod3) & !is.na(data$COMPEN) & !is.na(data$EDDS_12) &
+              data$BINGE_Mod3 == 2 & data$FEATURE_Mod3 >= 3 & data$COMPEN == 0 & data$EDDS_12 == 1] <- '03 BED'
   ## If (BINGE_Mod3=2) EDDSDX=3.  
   data$scoreEDDSDX_Mod3B[!is.na(data$BINGE_Mod3) & data$BINGE_Mod3 == 2] <- '03 BED'
   
@@ -568,8 +597,8 @@ f_scoringEDDS5 <- function(data){
   data$scoreEDDSDX_Mod3B[!is.na(data$LOWBMI) & !is.na(data$COMPEN) & !is.na(data$WTSHAP) &
               data$LOWBMI == 1 & data$COMPEN == 2 & data$WTSHAP == 2] <- '01 AN'
   # If EDDS18<3 scoreEDDSDX_Mod3=0.
-  data$scoreEDDSDX_Mod3A[data$edds_18<3] <- '00 Ref'
-  data$scoreEDDSDX_Mod3B[data$edds_18<3] <- '00 Ref'
+  data$scoreEDDSDX_Mod3A[data$EDDS_18<3] <- '00 Ref'
+  data$scoreEDDSDX_Mod3B[data$EDDS_18<3] <- '00 Ref'
   
   cat('EDDSDX_Mod3A composite factor\n')
   print(f_tableNA(data$scoreEDDSDX_Mod3A))
@@ -583,21 +612,21 @@ f_scoringEDDS5 <- function(data){
   data$scoreEDDSDX_Mod3A_KM <- '999'
   data$scoreEDDSDX_Mod3B_KM <- '999'
   # If EDDS1<6 scoreEDDSDX_Mod3=0.
-  data$scoreEDDSDX_Mod3A_KM[data$edds_1<6] <- '00 Ref'
-  data$scoreEDDSDX_Mod3B_KM[data$edds_1<6] <- '00 Ref'
+  data$scoreEDDSDX_Mod3A_KM[data$EDDS_1<6] <- '00 Ref'
+  data$scoreEDDSDX_Mod3B_KM[data$EDDS_1<6] <- '00 Ref'
   # If EDDS17>=4 scoreEDDSDX_Mod3=8.
-  data$scoreEDDSDX_Mod3A_KM[data$edds_17>=4] <- '08 night eating syndrome'
-  data$scoreEDDSDX_Mod3B_KM[data$edds_17>=4] <- '08 night eating syndrome'
+  data$scoreEDDSDX_Mod3A_KM[data$EDDS_17>=4] <- '08 night eating syndrome'
+  data$scoreEDDSDX_Mod3B_KM[data$EDDS_17>=4] <- '08 night eating syndrome'
   # If (PURGE>=4 and BINGE_Mod3=0 and WTSHAP=2) scoreEDDSDX_Mod3=7.  
   data$scoreEDDSDX_Mod3A_KM[!is.na(data$PURGE) & !is.na(data$BINGE_Mod3) & !is.na(data$WTSHAP) & 
                            data$PURGE >= 4 & data$BINGE_Mod3 == 0 & data$WTSHAP == 2] <- '07 purging disorder'
   data$scoreEDDSDX_Mod3B_KM[!is.na(data$PURGE) & !is.na(data$BINGE_Mod3) & !is.na(data$WTSHAP) & 
                            data$PURGE >= 4 & data$BINGE_Mod3 == 0 & data$WTSHAP == 2] <- '07 purging disorder'
   # If (BINGE_Mod3=1 and FEATURE_Mod3>=3 and EDDS12=1 and COMPEN_KM=0) scoreEDDSDX_Mod3=6.  
-  data$scoreEDDSDX_Mod3A_KM[!is.na(data$FEATURE_Mod3) & !is.na(data$BINGE_Mod3) & !is.na(data$COMPEN_KM) & !is.na(data$edds_12) &
-                           data$FEATURE_Mod3 >= 3 & data$BINGE_Mod3 == 1 & data$COMPEN_KM == 0 & data$edds_12 == 1] <- '06 low frequency BED'
-  data$scoreEDDSDX_Mod3B_KM[!is.na(data$FEATURE_Mod3) & !is.na(data$BINGE_Mod3) & !is.na(data$COMPEN_KM) & !is.na(data$edds_12) &
-                           data$FEATURE_Mod3 >= 3 & data$BINGE_Mod3 == 1 & data$COMPEN_KM == 0 & data$edds_12 == 1] <- '06 low frequency BED'
+  data$scoreEDDSDX_Mod3A_KM[!is.na(data$FEATURE_Mod3) & !is.na(data$BINGE_Mod3) & !is.na(data$COMPEN_KM) & !is.na(data$EDDS_12) &
+                           data$FEATURE_Mod3 >= 3 & data$BINGE_Mod3 == 1 & data$COMPEN_KM == 0 & data$EDDS_12 == 1] <- '06 low frequency BED'
+  data$scoreEDDSDX_Mod3B_KM[!is.na(data$FEATURE_Mod3) & !is.na(data$BINGE_Mod3) & !is.na(data$COMPEN_KM) & !is.na(data$EDDS_12) &
+                           data$FEATURE_Mod3 >= 3 & data$BINGE_Mod3 == 1 & data$COMPEN_KM == 0 & data$EDDS_12 == 1] <- '06 low frequency BED'
   # If (BINGE_Mod3=1 and COMPEN_KM=1 and WTSHAP=2) scoreEDDSDX_Mod3=5.  
   data$scoreEDDSDX_Mod3A_KM[!is.na(data$WTSHAP) & !is.na(data$BINGE_Mod3) & !is.na(data$COMPEN_KM) &
                            data$WTSHAP == 2 & data$BINGE_Mod3 == 1 & data$COMPEN_KM == 1] <- '05 low frequency BN'
@@ -610,8 +639,8 @@ f_scoringEDDS5 <- function(data){
                            data$WTLOSS == 1 & data$FEARWT == 2 & data$WTSHAP == 2] <- '04 Atypical AN'
   
   ## If (BINGE_Mod3=2 and FEATURE_Mod3>=3 and EDDS12=1 and COMPEN_KM=0) scoreEDDSDX_Mod3=3.  
-  data$scoreEDDSDX_Mod3A_KM[!is.na(data$BINGE_Mod3) & !is.na(data$FEATURE_Mod3) & !is.na(data$COMPEN_KM) & !is.na(data$edds_12) &
-                           data$BINGE_Mod3 == 2 & data$FEATURE_Mod3 >= 3 & data$COMPEN_KM == 0 & data$edds_12 == 1] <- '03 BED'
+  data$scoreEDDSDX_Mod3A_KM[!is.na(data$BINGE_Mod3) & !is.na(data$FEATURE_Mod3) & !is.na(data$COMPEN_KM) & !is.na(data$EDDS_12) &
+                           data$BINGE_Mod3 == 2 & data$FEATURE_Mod3 >= 3 & data$COMPEN_KM == 0 & data$EDDS_12 == 1] <- '03 BED'
   ## If (BINGE_Mod3=2) EDDSDX=3.  
   data$scoreEDDSDX_Mod3B_KM[!is.na(data$BINGE_Mod3) & data$BINGE_Mod3 == 2] <- '03 BED'
   
@@ -631,8 +660,8 @@ f_scoringEDDS5 <- function(data){
   data$scoreEDDSDX_Mod3B_KM[!is.na(data$LOWBMI) & !is.na(data$COMPEN_KM) & !is.na(data$WTSHAP) &
                            data$LOWBMI == 1 & data$COMPEN_KM == 2 & data$WTSHAP == 2] <- '01 AN'
   # If EDDS18<3 scoreEDDSDX_Mod3=0.
-  data$scoreEDDSDX_Mod3A_KM[data$edds_18<3] <- '00 Ref'
-  data$scoreEDDSDX_Mod3B_KM[data$edds_18<3] <- '00 Ref'
+  data$scoreEDDSDX_Mod3A_KM[data$EDDS_18<3] <- '00 Ref'
+  data$scoreEDDSDX_Mod3B_KM[data$EDDS_18<3] <- '00 Ref'
   
   cat('EDDSDX_Mod3A_KM composite factor\n')
   print(f_tableNA(data$scoreEDDSDX_Mod3A_KM))
@@ -653,9 +682,9 @@ f_scoringEDDS5 <- function(data){
   print(f_tableNA(data$scoreAnyEDDS5_KM))
   print(addmargins(f_tableNA(scoreEDDSDX = data$scoreEDDSDX, scoreAnyEDDS5_KM = data$scoreAnyEDDS5_KM),1))
   ## Mod 3
-  ## 3. If edds_4>1 AND edds_5>1 OR If edds_6 >/=2, then scoreAnyEDDS5 = 1
+  ## 3. If EDDS_4>1 AND EDDS_5>1 OR If EDDS_6 >/=2, then scoreAnyEDDS5 = 1
   data$scoreAnyEDDS5Mod03 <- data$scoreAnyEDDS5
-  data$scoreAnyEDDS5Mod03[data$EDDS6 > 1 | (data$edds_5 == 1 & data$edds_4 == 1)] <- 1
+  data$scoreAnyEDDS5Mod03[data$EDDS6 > 1 | (data$EDDS_5 == 1 & data$EDDS_4 == 1)] <- 1
   cat('scoreEDDSDX with AnyEDDDXMod03 composite factors\n')
   print(f_tableNA(data$scoreAnyEDDS5Mod03))
   print(addmargins(f_tableNA(scoreEDDSDX = data$scoreEDDSDX, scoreAnyEDDS5Mod03 = data$scoreAnyEDDS5Mod03),1))
@@ -689,15 +718,15 @@ f_scoringEDDS5 <- function(data){
   # positively skewed that the alpha is not acceptable. In those instances, 
   # we recommend taking the z-score of items before averaging.  
   # 
-  newVarsEDDS5 <-c( paste0("edds_", 1:5), paste0("EDDS", 6:12), paste0("edds_", 13:18) )
+  newVarsEDDS5 <-c( paste0("EDDS_", 1:5), paste0("EDDS", 6:12), paste0("EDDS_", 13:18) )
 
   data <- data %>% 
     mutate(
-      zEDDS1 = as.numeric(scale(data$edds_1))
-      , zEDDS2 = as.numeric(scale(data$edds_2))
-      , zEDDS3 = as.numeric(scale(data$edds_3))
-      , zEDDS4 = as.numeric(scale(data$edds_4))
-      , zEDDS5 = as.numeric(scale(data$edds_5))
+      zEDDS1 = as.numeric(scale(data$EDDS_1))
+      , zEDDS2 = as.numeric(scale(data$EDDS_2))
+      , zEDDS3 = as.numeric(scale(data$EDDS_3))
+      , zEDDS4 = as.numeric(scale(data$EDDS_4))
+      , zEDDS5 = as.numeric(scale(data$EDDS_5))
       , zEDDS6 = as.numeric(scale(data$EDDS6))
       , zEDDS7 = as.numeric(scale(data$EDDS7))
       , zEDDS8 = as.numeric(scale(data$EDDS8))
@@ -705,12 +734,12 @@ f_scoringEDDS5 <- function(data){
       , zEDDS10 = as.numeric(scale(data$EDDS10))
       , zEDDS11 = as.numeric(scale(data$EDDS11))
       , zEDDS12 = as.numeric(scale(data$EDDS12))
-      , zEDDS13 = as.numeric(scale(data$edds_13))
-      , zEDDS14 = as.numeric(scale(data$edds_14))
-      , zEDDS15 = as.numeric(scale(data$edds_15))
-      , zEDDS16 = as.numeric(scale(data$edds_16))
-      , zEDDS17 = as.numeric(scale(data$edds_17))
-      , zEDDS18 = as.numeric(scale(data$edds_18))
+      , zEDDS13 = as.numeric(scale(data$EDDS_13))
+      , zEDDS14 = as.numeric(scale(data$EDDS_14))
+      , zEDDS15 = as.numeric(scale(data$EDDS_15))
+      , zEDDS16 = as.numeric(scale(data$EDDS_16))
+      , zEDDS17 = as.numeric(scale(data$EDDS_17))
+      , zEDDS18 = as.numeric(scale(data$EDDS_18))
     )
 
   # DSM-5 symptom composite via average of z-scores.  
@@ -726,62 +755,33 @@ f_scoringEDDS5 <- function(data){
   data$EDSYMRAW <- rowSums(data[, newVarsEDDS5])
 
   # Create factors for display
-  data$EDDS1 <- factor(data$edds_1, labels = c("0 Not At All", "1", "2 Slightly", "3", "4 Moderately", '5', "6 Extremely"))
-  data$EDDS2 <- factor(data$edds_2, labels = c("0 Not At All", "1", "2 Slightly", "3", "4 Moderately", '5', "6 Extremely"))
-  data$EDDS3 <- factor(data$edds_3, labels = c("0 Not At All", "1", "2 Slightly", "3", "4 Moderately", '5', "6 Extremely"))
-  data$EDDS4 <- factor(data$edds_4, labels = c("0 No", "1 Yes"))
-  data$EDDS5 <- factor(data$edds_5, labels = c("0 No", "1 Yes"))
-  
-  attr(data$EDDS1, 'label') <- 'edds1 Have you felt fat?'
-  attr(data$EDDS2, 'label') <- 'edds2 Have you had a definite fear that you might gain weight or become fat?'
-  attr(data$EDDS3, 'label') <- 'edds3 Has your weight or shape influenced how you judge yourself as a person?'
-  attr(data$EDDS4, 'label') <- 'edds4 During the past 3 months, have there been times when you have eaten what other people would regard as an unusually large amount of food (e.g., a pint of ice cream) given the circumstances?'
-  attr(data$EDDS5, 'label') <- 'edds5 During the times when you ate an unusually large amount of food, did you experience a loss of control (e.g., felt you couldn’t stop eating or control what or how much you were eating)?'
-  
-  data$EDDS_6 <- factor(data$EDDS6)
-  attr(data$EDDS6, 'label') <- 'EDDS6 How many times per month on average over the past 3 months have you eaten an unusually large amount of food and experienced a loss of control? (write in number of times)'
-  attr(data$EDDS_6, 'label') <- 'EDDS6 How many times per month on average over the past 3 months have you eaten an unusually large amount of food and experienced a loss of control? (write in number of times)'
+  data$EDDS1 <- factor(data$EDDS_1, labels = c("0 Not At All", "1", "2 Slightly", "3", "4 Moderately", '5', "6 Extremely"))
+  data$EDDS2 <- factor(data$EDDS_2, labels = c("0 Not At All", "1", "2 Slightly", "3", "4 Moderately", '5', "6 Extremely"))
+  data$EDDS3 <- factor(data$EDDS_3, labels = c("0 Not At All", "1", "2 Slightly", "3", "4 Moderately", '5', "6 Extremely"))
+  data$EDDS4 <- factor(data$EDDS_4, labels = c("0 No", "1 Yes"))
+  data$EDDS5 <- factor(data$EDDS_5, labels = c("0 No", "1 Yes")) 
+  # edds6 is treated as continuous
   data$EDDS7 <- factor(data$EDDS7, labels = c("0 No", "1 Yes"))
-  attr(data$EDDS7, 'label') <- 'EDDS7 During episodes of overeating with a loss of control, did you: Eat much more rapidly than normal?'
   # edds8 8. Eat until you feel uncomfortably full?
   # If (EDDS4=0 and EDDS5=0) EDDS8=0.
   data$EDDS8 <- factor(data$EDDS8, labels = c("0 No", "1 Yes"))
-  attr(data$EDDS8, 'label') <- 'EDDS8 During episodes of overeating with a loss of control, did you: Eat until you feel uncomfortably full?'
   # edds9    9. Eat large amounts of food when you didn’t feel physically hungry?
   # If (EDDS4=0 and EDDS5=0) EDDS9=0.
   data$EDDS9 <- factor(data$EDDS9, labels = c("0 No", "1 Yes"))
-  attr(data$EDDS9, 'label') <- 'EDDS9 During episodes of overeating with a loss of control, did you: Eat large amounts of food when you didn’t feel physically hungry?'
   # edds10      10. Eat alone because you were embarrassed by how much you were eating?
   # If (EDDS4=0 and EDDS5=0) EDDS10=0.
   data$EDDS10 <- factor(data$EDDS10, labels = c("0 No", "1 Yes"))
-  attr(data$EDDS10, 'label') <- 'EDDS10 During episodes of overeating with a loss of control, did you: Eat alone because you were embarrassed by how much you were eating?'
   # edds11        11. Feel disgusted with yourself, depressed, or very guilty after overeating?
   # If (EDDS4=0 and EDDS5=0) EDDS11=0.
   data$EDDS11 <- factor(data$EDDS11, labels = c("0 No", "1 Yes"))
-  attr(data$EDDS11, 'label') <- 'EDDS11 During episodes of overeating with a loss of control, did you: Feel disgusted with yourself, depressed, or very guilty after overeating?'
   # edds12          12. If you have episodes of uncontrollable overeating, does it make you very upset?
   # If (EDDS4=0 and EDDS5=0) EDDS12=0.
   data$EDDS12 <- factor(data$EDDS12, labels = c("0 No", "1 Yes"))
-  attr(data$EDDS12, 'label') <- 'EDDS12 During episodes of overeating with a loss of control, did you: If you have episodes of uncontrollable overeating, does it make you very upset?'
-  # edds13 - edds17 are continuous, but for display we create factors
-  data$EDDS13 <- factor(data$edds_13)
-  attr(data$edds_13, 'label') <- 'EDDS13 In order to prevent weight gain or counteract the effects of eating, how many times per month on average over the past 3 months have you: Made yourself vomit?'
-  attr(data$EDDS13, 'label') <- 'EDDS13 In order to prevent weight gain or counteract the effects of eating, how many times per month on average over the past 3 months have you: Made yourself vomit?'
-  data$EDDS14 <- factor(data$edds_14)
-  attr(data$edds_14, 'label') <- 'EDDS14 In order to prevent weight gain or counteract the effects of eating, how many times per month on average over the past 3 months have you: Used laxatives or diuretics?'
-  attr(data$EDDS14, 'label') <- 'EDDS14 In order to prevent weight gain or counteract the effects of eating, how many times per month on average over the past 3 months have you: Used laxatives or diuretics?'
-  data$EDDS15 <- factor(data$edds_15)
-  attr(data$edds_15, 'label') <- 'EDDS15 In order to prevent weight gain or counteract the effects of eating, how many times per month on average over the past 3 months have you: Fasted (skipped at least 2 meals in a row)?'
-  attr(data$EDDS15, 'label') <- 'EDDS15 In order to prevent weight gain or counteract the effects of eating, how many times per month on average over the past 3 months have you: Fasted (skipped at least 2 meals in a row)?'
-  data$EDDS16 <- factor(data$edds_16)
-  attr(data$edds_16, 'label') <- 'EDDS16 In order to prevent weight gain or counteract the effects of eating, how many times per month on average over the past 3 months have you: Engaged in more intense exercise specifically to counteract the effects of overeating?'
-  attr(data$EDDS16, 'label') <- 'EDDS16 In order to prevent weight gain or counteract the effects of eating, how many times per month on average over the past 3 months have you: Engaged in more intense exercise specifically to counteract the effects of overeating?'
-  data$EDDS17 <- factor(data$edds_17)
-  attr(data$edds_17, 'label') <- 'EDDS17 How many times per month on average over the past 3 months have you eaten after awakening from sleep or eaten an unusually large amount of food after your evening meal and felt distressed by the night eating?'
-  attr(data$EDDS17, 'label') <- 'EDDS17 How many times per month on average over the past 3 months have you eaten after awakening from sleep or eaten an unusually large amount of food after your evening meal and felt distressed by the night eating?'
-  data$EDDS18 <- factor(data$edds_18, labels = c("0 Not At All", "1", "2 Slightly", "3", "4 Moderately", "5", "6 Extremely"))
-  attr(data$edds_18, 'label') <- 'EDDS18 How much do eating or body image problems impact your relationships with friends and family, work performance, and school performance? (Please select the best answer from 0 to 6)'
-  attr(data$EDDS18, 'label') <- 'EDDS18 How much do eating or body image problems impact your relationships with friends and family, work performance, and school performance? (Please select the best answer from 0 to 6)'
-  
+  # edds13 - edds17 are treated as continuous
+  data$EDDS18 <- factor(data$EDDS_18, labels = c("0 Not At All", "1", "2 Slightly", "3", "4 Moderately", "5", "6 Extremely"))
+
+  for(i in 1:18)
+    Hmisc::label(data[, paste0("EDDS", i)]) <- dsItems$Question[dsItems$Item == paste0("EDDS", i)]
+
   return(data)
 }
