@@ -22,7 +22,7 @@
 #   data: The survey. Assumes item names in the original survey have underscores ~ SDE_1, SCOFF_5, etc...
 #
 # Details:
-#   38 items scored yes/no and labeled with the corresponding question:
+#   N = 38 items scored yes/no and labeled with the corresponding question:
 #   SDE1	Do you often feel the desire to eat when you are emotionally upset or stressed?
 #   SDE2	Has thinking about food, eating, or calories made it very difficult to concentrate on things you are interested in (for example, working, following a conversation, or reading)?
 #   SDE3	Do you give too much time and thought to food?
@@ -78,7 +78,7 @@ dsItems <- dsItems[grepl("^(SDE)|(SCOFF)|(PHQ6[ab])", dsItems$Item, ignore.case 
 f_scoringNSDE <- function(data){
   # Domains
   ## Distress
-  varsSDEDistress <- c(paste('SDE', 1:5, sep = '_'), "scoff_5")
+  varsSDEDistress <- c(paste('SDE', 1:5, sep = '_'), "SCOFF_5")
   varsSDEDistressF <- c(paste0('SDE', 1:5), "SCOFF5")
   data[, varsSDEDistress] <-sapply(
     data[, varsSDEDistress]
@@ -86,7 +86,7 @@ f_scoringNSDE <- function(data){
   data$SDE1 <- factor(data$SDE_1, labels = c('0 No', '1 Yes'))
   data$SDE2 <- factor(data$SDE_2, labels = c('0 No', '1 Yes'))
   data$SDE3 <- factor(data$SDE_3, labels = c('0 No', '1 Yes'))
-  data$SCOFF5 <- factor(data$scoff_5, labels = c('0 No', '1 Yes'))
+  data$SCOFF5 <- factor(data$SCOFF_5, labels = c('0 No', '1 Yes'))
   data$SDE4 <- factor(data$SDE_4, labels = c('0 No', '1 Yes'))
   data$SDE5 <- factor(data$SDE_5, labels = c('0 No', '1 Yes'))
   cat('varsSDEDistressF Items \n')
@@ -107,12 +107,12 @@ f_scoringNSDE <- function(data){
   print(apply(data[, varsSDERestraintF], 2, f_tableNA))
   
   ## BodySatisfaction
-  varsSDEBodySatisfaction <- c('scoff_4', paste('SDE', 11:15, sep = '_'))
+  varsSDEBodySatisfaction <- c('SCOFF_4', paste('SDE', 11:15, sep = '_'))
   varsSDEBodySatisfactionF <- c('SCOFF4', paste0('SDE', 11:15))
   data[, varsSDEBodySatisfaction] <-sapply(
     data[, varsSDEBodySatisfaction]
     , function(x) ifelse(is.na(x), 0, x))
-  data$SCOFF4 <- factor(data$scoff_4, labels = c('0 No', '1 Yes'))
+  data$SCOFF4 <- factor(data$SCOFF_4, labels = c('0 No', '1 Yes'))
   data$SDE11 <- factor(data$SDE_11, labels = c('0 No', '1 Yes'))
   data$SDE12 <- factor(data$SDE_12, labels = c('0 No', '1 Yes'))
   data$SDE13 <- factor(data$SDE_13, labels = c('0 No', '1 Yes'))
@@ -122,7 +122,7 @@ f_scoringNSDE <- function(data){
   print(apply(data[, varsSDEBodySatisfactionF], 2, f_tableNA))
   
   ## Weight
-  varsSDEWeight <- c('scoff_3', paste('SDE', 16:19, sep = '_'))
+  varsSDEWeight <- c('SCOFF_3', paste('SDE', 16:19, sep = '_'))
   varsSDEWeightF <- c('SCOFF3', paste0('SDE', 16:19))
   data[, varsSDEWeight] <-sapply(
     data[, varsSDEWeight]
@@ -130,20 +130,20 @@ f_scoringNSDE <- function(data){
   data$SDE16 <- factor(data$SDE_16, labels = c('0 No', '1 Yes'))
   data$SDE17 <- factor(data$SDE_17, labels = c('0 No', '1 Yes'))
   data$SDE18 <- factor(data$SDE_18, labels = c('0 No', '1 Yes'))
-  data$SCOFF3 <- factor(data$scoff_3, labels = c('0 No', '1 Yes'))
+  data$SCOFF3 <- factor(data$SCOFF_3, labels = c('0 No', '1 Yes'))
   data$SDE19 <- factor(data$SDE_19, labels = c('0 No', '1 Yes'))
   cat('varsSDEWeightF Items \n')
   print(apply(data[, varsSDEWeightF], 2, f_tableNA))
   
   ## Binge 
-  varsSDEBinge <- c('PHQ_6a', 'PHQ_6b', paste('SDE', 20:23, sep = '_'))
-  varsSDEBingeF <- c('PHQ6a', 'PHQ6b', paste0('SDE', 20:23))
+  varsSDEBinge <- c('PHQ_6A', 'PHQ_6B', paste('SDE', 20:23, sep = '_'))
+  varsSDEBingeF <- c('PHQ6A', 'PHQ6B', paste0('SDE', 20:23))
   data$SDE_22 <- ifelse(data$SDE_22==2, 0, data$SDE_22) 
   data[, varsSDEBinge] <-sapply(
     data[, varsSDEBinge]
     , function(x) ifelse(is.na(x), 0, x))
-  data$PHQ6a <- factor(data$PHQ_6a, labels = c('0 No', '1 Yes'))
-  data$PHQ6b <- factor(data$PHQ_6b, labels = c('0 No', '1 Yes'))
+  data$PHQ6A <- factor(data$PHQ_6A, labels = c('0 No', '1 Yes'))
+  data$PHQ6B <- factor(data$PHQ_6B, labels = c('0 No', '1 Yes'))
   data$SDE20 <- factor(data$SDE_20, labels = c('0 No', '1 Yes'))
   data$SDE21 <- factor(data$SDE_21, labels = c('0 No', '1 Yes'))
   data$SDE22 <- factor(data$SDE_22, labels = c('0 No', '1 Yes'))
@@ -152,14 +152,14 @@ f_scoringNSDE <- function(data){
   print(apply(data[, varsSDEBingeF], 2, f_tableNA))
   
   ## Purge
-  varsSDEPurge <- c('scoff_1', paste('SDE', 24:25, sep = '_'))
+  varsSDEPurge <- c('SCOFF_1', paste('SDE', 24:25, sep = '_'))
   varsSDEPurgeF <- c('SCOFF1', paste0('SDE', 24:25))
   data[, varsSDEPurge] <-sapply(
     data[, varsSDEPurge]
     , function(x) ifelse(is.na(x), 0, x))
   data$SDE24 <- factor(data$SDE_24, labels = c('0 No', '1 Yes'))
   data$SDE25 <- factor(data$SDE_25, labels = c('0 No', '1 Yes'))
-  data$SCOFF1 <- factor(data$scoff_1, labels = c('0 No', '1 Yes'))
+  data$SCOFF1 <- factor(data$SCOFF_1, labels = c('0 No', '1 Yes'))
   cat('varsSDEPurgeF Items \n')
   print(apply(data[, varsSDEPurgeF], 2, f_tableNA))
   
@@ -185,7 +185,7 @@ f_scoringNSDE <- function(data){
     Hmisc::label(data[, paste0("SDE", i)]) <- dsItems$Question[dsItems$Item == paste0("SDE", i)]
   for(i in c(1:5))
     Hmisc::label(data[, paste0("SCOFF", i)]) <- dsItems$Question[dsItems$Item == paste0("SCOFF", i)]  
-  for(i in c("a","b"))
+  for(i in c("A","B"))
     Hmisc::label(data[, paste0("PHQ6", i)]) <- dsItems$Question[dsItems$Item == paste0("PHQ6", i)]  
 
   return(data)
