@@ -1,149 +1,81 @@
-Item,Question
-SDE1,"Do you often feel the desire to eat when
-you are emotionally upset or stressed?"
-SDE2,"Has thinking about food, eating, or
-calories made it very difficult to concentrate on things you are interested in
-(for example, working, following a conversation, or reading)?"
-SDE3,"Do you give too much time and thought to
-food?"
-SDE4,"Does your eating or weight cause
-distress or difficulty in your life (for example, working/school, in relationships, or
-in some other important way)?"
-SDE5,"Have you engaged in unhealthy dieting
-that you or others are concerned about?"
-SDE6,"Are you
-often preoccupied with a desire to be thinner?"
-SDE7,"Have you been deliberately trying to
-limit the amount of food you eat to influence your shape or weight (whether or
-not you have succeeded)?"
-SDE8,"Have you gone for long periods of time
-(8 waking hours or more) without eating anything at all in order to influence
-your shape or weight?"
-SDE9,"Have you tried to follow definite rules
-regarding your eating (for example, a calorie limit) in order to influence your
-shape or weight (whether or not you have succeeded)?"
-SDE10,"Have you engaged in strict dieting to
-alter your weight or shape (whether or not you have succeeded)?"
-SDE11,"Has your shape or weight influenced how
-you think about (judge) yourself as a person?"
-SDE12,"Are you mostly dissatisfied with your
-shape or weight?"
-SDE13,"Has seeing your reflection (for example, in a
-mirror or shop window) made you feel bad about your shape?"
-SDE14,"Do you exaggerate or magnify the
-importance of your weight?"
-SDE15,"Is your weight or shape one of the most
-important things about you, as a person?"
-SDE16,"Have you had a definite fear that you
-might gain weight, or gain more weight?"
-SDE17,"Do other people think that you are too
-thin or have lost too much weight?"
-SDE18,"Have you lost 20 pounds or more in the
-past 6 months?"
-SDE19,"Are you putting extreme effort in maintaining
-your weight?"
+ITEM,Question
+SDE1,Do you often feel the desire to eat when you are emotionally upset or stressed?
+SDE2,"Has thinking about food, eating, or calories made it very difficult to concentrate on things you are interested in (for example, working, following a conversation, or reading)?"
+SDE3,Do you give too much time and thought to food?
+SDE4,"Does your eating or weight cause distress or difficulty in your life (for example, working/school, in relationships, or in some other important way)?"
+SDE5,Have you engaged in unhealthy dieting that you or others are concerned about?
+SDE6,Are you often preoccupied with a desire to be thinner?
+SDE7,Have you been deliberately trying to limit the amount of food you eat to influence your shape or weight (whether or not you have succeeded)?
+SDE8,Have you gone for long periods of time (8 waking hours or more) without eating anything at all in order to influence your shape or weight?
+SDE9,"Have you tried to follow definite rules regarding your eating (for example, a calorie limit) in order to influence your shape or weight (whether or not you have succeeded)?"
+SDE10,Have you engaged in strict dieting to alter your weight or shape (whether or not you have succeeded)?
+SDE11,Has your shape or weight influenced how you think about (judge) yourself as a person?
+SDE12,Are you mostly dissatisfied with your shape or weight?
+SDE13,"Has seeing your reflection (for example, in a mirror or shop window) made you feel bad about your shape?"
+SDE14,Do you exaggerate or magnify the importance of your weight?
+SDE15,"Is your weight or shape one of the most important things about you, as a person?"
+SDE16,"Have you had a definite fear that you might gain weight, or gain more weight?"
+SDE17,Do other people think that you are too thin or have lost too much weight?
+SDE18,Have you lost 20 pounds or more in the past 6 months?
+SDE19,Are you putting extreme effort in maintaining your weight?
 SDE20,Have you regularly eaten extremely large amounts of food at one time and felt that your eating was out of control at that time?
-SDE21,"Have you had a definite fear of losing
-control over eating?"
-SDE22,"Have you gone on eating binges where you
-felt that you could not stop?"
+SDE21,Have you had a definite fear of losing control over eating?
+SDE22,Have you gone on eating binges where you felt that you could not stop?
 SDE23,"Over the last three months, have you eaten excessive amounts of food at one time and felt that your eating was out of control at that time?"
-SDE24,"Do you sometimes make yourself throw up (vomit)
-to control your weight?"
-SDE25,"To control your weight or shape do you
-do ANY of the following: vomit,
-use laxatives or diuretics (water pills), exercise excessively in response to
-overeating, use over the counter diet aids, or alter prescription medication
-use (for example, insulin)?"
-SDE26,"Do you eat half or more of your food
-after suppertime?"
-SDE27,"Do you need to eat in order to get back
-to sleep when you wake up at night?"
-SDE28,"Do you have cravings or urges to eat
-snacks when you wake up at night?"
-SDE29,"Do you feel out of control over your
-eating while you are up at night?"
-SDE30,"If you eat at night, is it upsetting to
-you?"
-SDE31,"Do you eat half or more of your food
-after suppertime
-OR
- Do you need to eat in order to go
-to, or get back to sleep?"
-edds1,Have you felt fat?
-edds2,"Have you had a
-definite fear that you might gain weight or become fat?"
-edds3,"Has your weight or
-shape influenced how you judge yourself as a person?"
-edds4,"During the past 3 months, have there been times when you have eaten what other people would regard as an unusually large amount of food (e.g., a pint of ice cream) given the circumstances?"
-edds5,"During the times
-when you ate an unusually large amount of food, did you experience a loss of control (e.g.,
-felt you couldn’t stop eating or control what or how much you were eating)?"
-edds6,How many times per month on average over the past 3 months have you eaten an unusually large amount of food and experienced a loss of control? (write in number of times)
-edds7,Eat much more rapidly than normal?
-edds8,Eat until you feel uncomfortably full?
-edds9,"Eat large amounts of food when you didn’t feel
-physically hungry?"
-edds10,"Eat alone because you were embarrassed by how much
-you were eating?"
-edds11,"Feel disgusted with yourself, depressed, or very
-guilty after overeating?"
-edds12,"If you have episodes of uncontrollable overeating,
-does it make you very upset?"
-edds13,Made yourself vomit? (write in number of times)
-edds14,Used laxatives or diuretics? (write in number of times)
-edds15,"
-
-Fasted (skipped at least 2 meals in a row)? (write in number of times)"
-edds16," Engaged in more intense exercise specifically to counteract the effects of overeating?
-
-(write in number of times)"
-edds17,"How many times per month on average over the past 3 months have you eaten after awakening from sleep or eaten an unusually large amount of food after your evening meal and felt distressed by the night eating?
-
-(write in number of times)"
-edds18,"How much do eating
-or body image problems impact your relationships with friends and family, work performance,
-and school performance? (select the
-best number)"
-wh1hight,How tall are you? (inches)
-wh2weight,How much do you weigh now? (lb)
-wh3a,"What was your highest adult weight, not including pregnancy (age 18 and older)? (lb)"
-wh3b,"How
-old were you?"
-wh4a,What was your lowest adult weight (age 18 and older)? (lb)
-wh4b,"How
-old were you?"
-wh5,"How old were you when you were first overweight (at least 10 lbs. as a child or 15 lbs. as an adult, not including pregnancy)? If you are not sure, what is your best guess? (years)Skip this questions if you have never been overweight."
-selfrec1,Do you believe that you have ever had an eating disorder(s)?
-selfrec2,Do you believe that you currently have an eating disorder?
-selfrec3,"If yes, what eating disorder(s) do you believe you
-have/had (not including pregnancy):"
-selfrec4,"Have you ever been diagnosed by a medical provider
-with an eating disorder(s)?"
-selfrec5,"If yes, what eating disorder(s) were you/are you
-diagnosed with:"
-selfrec6,What is your ideal weight? (lbs)
-Tx1,Have you ever sought treatment for an eating disorder?
-Tx2,Are you currently in treatment for an eating disorder?
-scoff1,"Do you make yourself
-sick because you feel uncomfortably full?"
-scoff2,"Do you worry you have
-lost control over how much you eat?"
-scoff3,"Have you recently
-lost more than 14 lbs in a three month period?"
-scoff4,Do you believe yourself to be fat when others say you are too thin?
-scoff5,"Would you say that
-food dominates your life?"
+SDE24,Do you sometimes make yourself throw up (vomit) to control your weight?
+SDE25,"To control your weight or shape do you do ANY of the following: vomit, use laxatives or diuretics (water pills), exercise excessively in response to overeating, use over the counter diet aids, or alter prescription medication use (for example, insulin)?"
+SDE26,Do you eat half or more of your food after suppertime?
+SDE27,Do you need to eat in order to get back to sleep when you wake up at night?
+SDE28,Do you have cravings or urges to eat snacks when you wake up at night?
+SDE29,Do you feel out of control over your eating while you are up at night?
+SDE30,"If you eat at night, is it upsetting to you?"
+SDE31,"Do you eat half or more of your food after suppertime OR  Do you need to eat in order to go to, or get back to sleep?"
+EDDS1,Have you felt fat?
+EDDS2,Have you had a definite fear that you might gain weight or become fat?
+EDDS3,Has your weight or shape influenced how you judge yourself as a person?
+EDDS4,"During the past 3 months, have there been times when you have eaten what other people would regard as an unusually large amount of food (e.g., a pint of ice cream) given the circumstances?"
+EDDS5,"During the times when you ate an unusually large amount of food, did you experience a loss of control (e.g., felt you couldn’t stop eating or control what or how much you were eating)?"
+EDDS6,How many times per month on average over the past 3 months have you eaten an unusually large amount of food and experienced a loss of control? (write in number of times)
+EDDS7,Eat much more rapidly than normal?
+EDDS8,Eat until you feel uncomfortably full?
+EDDS9,Eat large amounts of food when you didn’t feel physically hungry?
+EDDS10,Eat alone because you were embarrassed by how much you were eating?
+EDDS11,"Feel disgusted with yourself, depressed, or very guilty after overeating?"
+EDDS12,"If you have episodes of uncontrollable overeating, does it make you very upset?"
+EDDS13,Made yourself vomit? (write in number of times)
+EDDS14,Used laxatives or diuretics? (write in number of times)
+EDDS15,  Fasted (skipped at least 2 meals in a row)? (write in number of times)
+EDDS16, Engaged in more intense exercise specifically to counteract the effects of overeating?  (write in number of times)
+EDDS17,How many times per month on average over the past 3 months have you eaten after awakening from sleep or eaten an unusually large amount of food after your evening meal and felt distressed by the night eating?  (write in number of times)
+EDDS18,"How much do eating or body image problems impact your relationships with friends and family, work performance, and school performance? (select the best number)"
+WH1HIGHT,How tall are you? (inches)
+WH2WEIGHT,How much do you weigh now? (lb)
+WH3A,"What was your highest adult weight, not including pregnancy (age 18 and older)? (lb)"
+WH3B,How old were you?
+WH4A,What was your lowest adult weight (age 18 and older)? (lb)
+WH4B,How old were you?
+WH5,"How old were you when you were first overweight (at least 10 lbs. as a child or 15 lbs. as an adult, not including pregnancy)? If you are not sure, what is your best guess? (years)Skip this questions if you have never been overweight."
+SELFREC1,Do you believe that you have ever had an eating disorder(s)?
+SELFREC2,Do you believe that you currently have an eating disorder?
+SELFREC3,"If yes, what eating disorder(s) do you believe you have/had (not including pregnancy):"
+SELFREC4,Have you ever been diagnosed by a medical provider with an eating disorder(s)?
+SELFREC5,"If yes, what eating disorder(s) were you/are you diagnosed with:"
+SELFREC6,What is your ideal weight? (lbs)
+TX1,Have you ever sought treatment for an eating disorder?
+TX2,Are you currently in treatment for an eating disorder?
+SCOFF1,Do you make yourself sick because you feel uncomfortably full?
+SCOFF2,Do you worry you have lost control over how much you eat?
+SCOFF3,Have you recently lost more than 14 lbs in a three month period?
+SCOFF4,Do you believe yourself to be fat when others say you are too thin?
+SCOFF5,Would you say that food dominates your life?
 EDSPC1,Are you satisfied with your eating patterns?
 EDSPC2,Do you ever eat in secret?
 EDSPC3,Does your weight affect the way you feel about yourself?
 EDSPC4,Have any members of your family suffered with an eating disorder?
-EDSPC4a,"If ""Yes"", select all that apply:"
-EDSPC4b,"If ""Other"", please specify:"
+EDSPC4A,"If ""Yes"", select all that apply:"
+EDSPC4B,"If ""Other"", please specify:"
 EDSPC5,Do you currently suffer with or have you ever suffered in the past with an eating disorder?
-move11,"On average, how often
-have you eaten extremely large amounts of food at one time and felt that your
-eating was out of control at that time?"
+MOVE11,"On average, how often have you eaten extremely large amounts of food at one time and felt that your eating was out of control at that time?"
 EDEQ1,Have you been deliberately trying to limit the amount of food you eat to influence your shape or weight (whether or not you have succeeded)?
 EDEQ2,Have you gone for long periods of time (8 hours or more) without eating anything in order to influence your shape or weight?
 EDEQ3,Have you tried to exclude from your diet any foods that you like in order to influence your shape or weight (whether or not you have succeeded)?
@@ -163,20 +95,14 @@ EDEQ16,"Over the past 28 days, how many times have you made yourself sick (vomit
 EDEQ17,"Over the past 28 days, how many times have you taken laxatives as a means of controlling your shape or weight?"
 EDEQ18,"Over the past 28 days, how many times have you exercised in a “driven” or “compulsive” way as a means of controlling your weight, shape or amount of fat, or to burn off calories?"
 EDEQ19,"Over the past 28 days, on how many days have you eaten in secret? (do not count episodes of binge eating)"
-EDEQ20,"On what proportion of the times that you have eaten have you felt guilty
-(felt that you’ve done wrong) because of its effect on your shape or weight?
-(do not count episodes of binge eating)"
-EDEQ21,"Over the past 28 days, how concerned have you been about other people
-seeing you eat? (do not count episodes of binge eating)"
+EDEQ20,On what proportion of the times that you have eaten have you felt guilty (felt that you’ve done wrong) because of its effect on your shape or weight? (do not count episodes of binge eating)
+EDEQ21,"Over the past 28 days, how concerned have you been about other people seeing you eat? (do not count episodes of binge eating)"
 EDEQ22,Has your weight influenced how you think about (judge) yourself as a person?
 EDEQ23,Has your shape influenced how you think about (judge) yourself as a person?
-EDEQ24,"How much would it have upset you if you had been asked to weigh yourself
-once a week (no more, or less, often) for the next four weeks?"
+EDEQ24,"How much would it have upset you if you had been asked to weigh yourself once a week (no more, or less, often) for the next four weeks?"
 EDEQ25,How dissatisfied have you been with your weight?
 EDEQ26,How dissatisfied have you been with your shape?
-EDEQ27,"How uncomfortable have you felt seeing your body (for example, seeing
-your shape in the mirror, in a shop window reflections, while undressing or
-taking a bath or shower)?"
+EDEQ27,"How uncomfortable have you felt seeing your body (for example, seeing your shape in the mirror, in a shop window reflections, while undressing or taking a bath or shower)?"
 EDEQ28,"How uncomfortable have you felt about others seeing your shape or figure (for example, in communal changing rooms, when swimming, or wearing tight clothes)?"
 EDEQ29,"Have you eaten an unusually large amount of food given the circumstances in response to feelings of ANXIETY (worry, stress, nervousness)?"
 EDEQ30,"Have you eaten an unusually large amount of food given the circumstances in response to feelings of SADNESS (blue, down, depressed)?"
@@ -187,65 +113,49 @@ EDEQ34,"Have you eaten an unusually large amount of food given the circumstances
 EDEQ35,"Have you eaten an unusually large amount of food given the circumstances in response to feelings of BOREDOM (apathy, disinterest, dullness)?"
 EDEQ36,"Have you eaten an unusually large amount of food given the circumstances in response to feelings of GUILT (regret, remorse, shame)?"
 EDEQ37,Have you eaten an unusually large amount of food given the circumstances in response to physical PAIN?
-NEQ1,"How hungry are
-you usually in the morning?"
-NEQ2,"When do you
-usually eat for the first time?"
-NEQ3,"Do you have
-cravings or urges to eat snacks after supper, but before bedtime?"
-NEQ4,"How much
-control do you have over your eating between supper and bedtime?"
+NEQ1,How hungry are you usually in the morning?
+NEQ2,When do you usually eat for the first time?
+NEQ3,"Do you have cravings or urges to eat snacks after supper, but before bedtime?"
+NEQ4,How much control do you have over your eating between supper and bedtime?
 NEQ5,How much of your daily food intake do you consume after suppertime?
-NEQ6,"Are you
-currently feeling blue or down in the dumps?"
-NEQ7,"When you are
-feeling blue, is your mood lower in the:"
-NEQ8,"How often do
-you have trouble getting to sleep?"
-NEQ9,"Other than only
-to use the bathroom, how often do you get up at least once in the middle of the
-night?"
-NEQ10,"Do you have
-cravings or urges to eat snacks when you wake up at night?"
-NEQ11,"Do you need to eat
-in order to get back to sleep when you awake at night?"
+NEQ6,Are you currently feeling blue or down in the dumps?
+NEQ7,"When you are feeling blue, is your mood lower in the:"
+NEQ8,How often do you have trouble getting to sleep?
+NEQ9,"Other than only to use the bathroom, how often do you get up at least once in the middle of the night?"
+NEQ10,Do you have cravings or urges to eat snacks when you wake up at night?
+NEQ11,Do you need to eat in order to get back to sleep when you awake at night?
 NEQ12,"When you get up in the middle of the night, how often do you snack?"
-NEQ13,"When you
-snack in the middle of the night, how aware are you of your eating?"
-NEQ14,"How much
-control do you have over your eating while you are up at night?"
-NEQ15,"How long have your current difficulties with night eating been going
-on? (in years)"
-NEQ16,"Is your night
-eating upsetting to you?"
-NEQ17,"How much has
-your night eating affected your life?"
-eat261,I am terrified about being overweight.
-eat262,I avoid eating when I am hungry.
-eat263,I find myself preoccupied with food.
-eat264,I have gone on eating binges where I feel that I may not be able to stop.
-eat265,I cut my food into small pieces.
-eat266,I am aware of the calorie content of foods that I eat.
-eat267,"I particularly avoid food with a high carbohydrate content (i.e. bread, rice, potatoes, etc.)."
-eat268,I feel that others would prefer if I ate more.
-eat269,I vomit after I have eaten.
-eat2610,I feel extremely guilty after eating.
-eat2611,I am preoccupied with a desire to be thinner.
-eat2612,I think about burning up calories when I exercise.
-eat2613,Other people think that I am too thin.
-eat2614,I am preoccupied with the thought of having fat on my body.
-eat2615,I take longer than others to eat my meals.
-eat2616,I avoid foods with sugar in them.
-eat2617,I eat diet foods.
-eat2618,I feel that food controls my life.
-eat2619,I display self-control around food.
-eat2620,I feel that others pressure me to eat.
-eat2621,I give too much time and thought to food.
-eat2622,I feel uncomfortable after eating sweets.
-eat2623,I engage in dieting behavior.
-eat2624,I like my stomach to be empty.
-eat2625,I have the impulse to vomit after meals.
-eat2626,I enjoy trying rich new foods.
+NEQ13,"When you snack in the middle of the night, how aware are you of your eating?"
+NEQ14,How much control do you have over your eating while you are up at night?
+NEQ15,How long have your current difficulties with night eating been going on? (in years)
+NEQ16,Is your night eating upsetting to you?
+NEQ17,How much has your night eating affected your life?
+EAT261,I am terrified about being overweight.
+EAT262,I avoid eating when I am hungry.
+EAT263,I find myself preoccupied with food.
+EAT264,I have gone on eating binges where I feel that I may not be able to stop.
+EAT265,I cut my food into small pieces.
+EAT266,I am aware of the calorie content of foods that I eat.
+EAT267,"I particularly avoid food with a high carbohydrate content (i.e. bread, rice, potatoes, etc.)."
+EAT268,I feel that others would prefer if I ate more.
+EAT269,I vomit after I have eaten.
+EAT2610,I feel extremely guilty after eating.
+EAT2611,I am preoccupied with a desire to be thinner.
+EAT2612,I think about burning up calories when I exercise.
+EAT2613,Other people think that I am too thin.
+EAT2614,I am preoccupied with the thought of having fat on my body.
+EAT2615,I take longer than others to eat my meals.
+EAT2616,I avoid foods with sugar in them.
+EAT2617,I eat diet foods.
+EAT2618,I feel that food controls my life.
+EAT2619,I display self-control around food.
+EAT2620,I feel that others pressure me to eat.
+EAT2621,I give too much time and thought to food.
+EAT2622,I feel uncomfortable after eating sweets.
+EAT2623,I engage in dieting behavior.
+EAT2624,I like my stomach to be empty.
+EAT2625,I have the impulse to vomit after meals.
+EAT2626,I enjoy trying rich new foods.
 HFI1,"In the last 12 months, the food that I/we bought just didn’t last, and I/we didn’t have money to get more."
 HFI2,"In the last 12 months, I/we couldn’t afford to eat balanced meals."
 HFI3,"In the last 12 months, did you (or other adults in your household) ever cut the size of your meals or skip meals because there wasn’t enough money for food?"
@@ -268,23 +178,17 @@ EPSI14,I was disgusted by the sight of obese people.
 EPSI15,I exercised to the point of exhaustion.
 WBIS1,"Because of my weight, I feel that I am just as competent as anyone."
 WBIS2,I am less attractive than most other people because of my weight.
-WBIS3,"I feel anxious about my weight because of what people might
-think of me."
+WBIS3,I feel anxious about my weight because of what people might think of me.
 WBIS4,I wish I could drastically change my weight.
 WBIS5,"Whenever I think a lot about my weight, I feel depressed."
 WBIS6,I hate myself for my weight.
 WBIS7,My weight is a major way that I judge my value as a person.
-WBIS8,"I don’t feel that I deserve to have a really fulfilling
-social life, because of my weight."
+WBIS8,"I don’t feel that I deserve to have a really fulfilling social life, because of my weight."
 WBIS9,I am OK being the weight that I am.
 WBIS10,"Because of my weight, I don’t feel like my true self."
-WBIS11,"Because of my weight, I don’t understand how anyone
-attractive would want to date me."
-Ortho1,"Are
-you excessively concerned about the quality or purity of what you eat?"
-Ortho2,"On how many days out of the past
-28 days have you completely eliminated foods or food groups (examples such as fat
-or gluten) from your diet to be healthier?"
+WBIS11,"Because of my weight, I don’t understand how anyone attractive would want to date me."
+ORTHO1,Are you excessively concerned about the quality or purity of what you eat?
+ORTHO2,On how many days out of the past 28 days have you completely eliminated foods or food groups (examples such as fat or gluten) from your diet to be healthier?
 LOCES1,I continued to eat past the point when I wanted to stop.
 LOCES2,I felt like I had “blown it” and might as well keep eating.
 LOCES3,I felt helpless about controlling my eating.
@@ -292,161 +196,111 @@ LOCES4,My eating felt like a ball rolling down a hill that just kept going and g
 LOCES5,I found myself eating despite negative consequences.
 LOCES6,I felt like the craving to eat overpowered me.
 LOCES7,I felt like I could not do anything other than eat.
-MYFAS1,"I
-ate to the point where I felt physically ill."
+MYFAS1,I ate to the point where I felt physically ill.
 MYFAS2,I spent a lot of time feeling sluggish or tired from overeating.
-MYFAS3,"I
-avoided work, school or social activities because I was
-afraid I would overeat there."
-MYFAS4,"If
-I had emotional problems because I hadn’t eaten certain
-foods, I would eat those foods to feel better."
-MYFAS5,"My
-eating behavior caused me a lot of distress."
+MYFAS3,"I avoided work, school or social activities because I was afraid I would overeat there."
+MYFAS4,"If I had emotional problems because I hadn’t eaten certain foods, I would eat those foods to feel better."
+MYFAS5,My eating behavior caused me a lot of distress.
 MYFAS6,"I had significant problems in my life because of food and eating. These may have been problems with my daily routine, work, school, friends, family, or health."
-MYFAS7," My overeating got in the way of me taking care of my
-
-family or doing household chores."
+MYFAS7, My overeating got in the way of me taking care of my  family or doing household chores.
 MYFAS8,I kept eating in the same way even though my eating caused emotional problems.
-MYFAS9," Eating the same amount of food did not give me as 
-
-much enjoyment as it used to."
-MYFAS10," I had such strong urges to eat certain foods that I
-
-couldn’t think of anything else."
-MYFAS11,"I tried and failed to cut down on or stop eating certain
-
-foods."
-MYFAS12,"I was so distracted by eating that I could have been hurt (e.g., when
-driving a car, crossing the street, operating machinery)."
-MYFAS13,"My friends or family were worried about how much I
-
-overate."
-deq1,I often find that I don't live up to my own standard or ideals
-deq2,There is a considerable difference between how I am now and how I would like to be.
-deq3,"I
-tend not to be satisfied with what I have."
-deq4,"I
-have a difficult time accepting weaknesses in myself."
-deq5,"I
-tend to be very critical of myself."
-deq6,"I
-very frequently compare myself to standards or goals."
-PHQ1a,Stomach pain
-PHQ1b,Back pain
-PHQ1c,"Pain in your arms, legs, or joints (knees, hips, etc.)"
-PHQ1d,"Menstrual cramps or other problems with your
-  periods"
-PHQ1e,Pain or problems during sexual intercourse
-PHQ1f,Headaches
-PHQ1g,Chest pain
-PHQ1h,Dizziness
-PHQ1i,Fainting spells
-PHQ1j,Feeling your heart pound or race
-PHQ1k,Shortness of breath
-PHQ1l,"Constipation, loose bowels, or diarrhea"
-PHQ1m,"Nausea, gas, or indigestion"
-PHQ2a,Little interest or pleasure in doing things
-PHQ2b,"Feeling down, depressed, or hopeless"
-PHQ2c,"Trouble falling or staying asleep, or sleeping too
-much"
-PHQ2d,Feeling tired or having little energy
-PHQ2e,Poor appetite or overeating
-PHQ2f,"Feeling bad about yourself – or that you are a failure
-or have let yourself or your family down"
-PHQ2g,"Trouble concentrating on things, such as reading the
-newspaper or watching television"
-PHQ2h,"Moving or speaking so slowly that other people could
-have noticed? Or the opposite – being so fidgety or restless that you have been
-moving around a lot more than usual"
-PHQ2i,"Thoughts that you would be better off dead or of
-hurting yourself in some way"
-PHQ3a,"In the last 4 weeks, have you had an anxiety attack – suddenly feeling fear or panic?
-
-(If you checked “NO”, go to question #5)."
-PHQ3b,Has this ever happened before?
-PHQ3c,"Do some of these attacks come suddenly out of the blue
-– that is, in situations where you don’t expect to be nervous or uncomfortable?"
-PHQ3d,"Do these attacks bother you a lot or are you worried
-about having another attack?"
-PHQ4a,Were you short of breath?
-PHQ4b,"Did your heart race, pound, or skip?"
-PHQ4c,Did you have chest pain or pressure?
-PHQ4d,Did you sweat?
-PHQ4e,Did you feel as if you were choking?
-PHQ4f,Did you have hot flashes or chills?
-PHQ4g,"Did you have nausea or an upset stomach, or the
-feeling that you were going to have diarrhea?"
-PHQ4h,"Did you feel dizzy, unsteady, or faint?"
-PHQ4i,Did you have tingling or numbness in parts of your body?
-PHQ4j,Did you tremble or shake?
-PHQ4k,Were you afraid you were dying?
-PHQ5a,"Feeling nervous, anxious, on edge, or worrying a lot about different things.
-
-(If you checked “Not at all”, go to question #6)."
-PHQ5b,Feeling restless so that it is hard to sit still.
-PHQ5c,Getting tired very easily.
-PHQ5d,"Muscle tension, aches, or soreness."
-PHQ5e,Trouble falling asleep or staying asleep.
-PHQ5f,"Trouble concentrating on things, such as reading a
-book or watching TV."
-PHQ5g,Becoming easily annoyed or irritable.
-PHQ6a,Do you often feel that you can’t control what or how much you eat?
-PHQ6b,"Do you often eat, within any 2-hour period, what most people would regard as an unusually large amount of food? (If you checked “NO” to either a or b, go to question #9)."
-PHQ6c,"Has this been as often, on average, as twice a week
-for the last 3 months?"
-PHQ7a,Made yourself vomit?
-PHQ7b,"Took more than twice the recommended dose of
-  laxatives?"
-PHQ7c,"Fasted – not eaten anything at all for at least 24
-hours?"
-PHQ7d,"Exercised for more than an hour specifically to avoid
-gaining weight after binge eating?"
+MYFAS9, Eating the same amount of food did not give me as   much enjoyment as it used to.
+MYFAS10, I had such strong urges to eat certain foods that I  couldn’t think of anything else.
+MYFAS11,I tried and failed to cut down on or stop eating certain  foods.
+MYFAS12,"I was so distracted by eating that I could have been hurt (e.g., when driving a car, crossing the street, operating machinery)."
+MYFAS13,My friends or family were worried about how much I  overate.
+DEQ1,I often find that I don't live up to my own standard or ideals
+DEQ2,There is a considerable difference between how I am now and how I would like to be.
+DEQ3,I tend not to be satisfied with what I have.
+DEQ4,I have a difficult time accepting weaknesses in myself.
+DEQ5,I tend to be very critical of myself.
+DEQ6,I very frequently compare myself to standards or goals.
+PHQ1A,Stomach pain
+PHQ1B,Back pain
+PHQ1C,"Pain in your arms, legs, or joints (knees, hips, etc.)"
+PHQ1D,Menstrual cramps or other problems with your   periods
+PHQ1E,Pain or problems during sexual intercourse
+PHQ1F,Headaches
+PHQ1G,Chest pain
+PHQ1H,Dizziness
+PHQ1I,Fainting spells
+PHQ1J,Feeling your heart pound or race
+PHQ1K,Shortness of breath
+PHQ1L,"Constipation, loose bowels, or diarrhea"
+PHQ1M,"Nausea, gas, or indigestion"
+PHQ2A,Little interest or pleasure in doing things
+PHQ2B,"Feeling down, depressed, or hopeless"
+PHQ2C,"Trouble falling or staying asleep, or sleeping too much"
+PHQ2D,Feeling tired or having little energy
+PHQ2E,Poor appetite or overeating
+PHQ2F,Feeling bad about yourself – or that you are a failure or have let yourself or your family down
+PHQ2G,"Trouble concentrating on things, such as reading the newspaper or watching television"
+PHQ2H,Moving or speaking so slowly that other people could have noticed? Or the opposite – being so fidgety or restless that you have been moving around a lot more than usual
+PHQ2I,Thoughts that you would be better off dead or of hurting yourself in some way
+PHQ3A,"In the last 4 weeks, have you had an anxiety attack – suddenly feeling fear or panic?  (If you checked “NO”, go to question #5)."
+PHQ3B,Has this ever happened before?
+PHQ3C,"Do some of these attacks come suddenly out of the blue – that is, in situations where you don’t expect to be nervous or uncomfortable?"
+PHQ3D,Do these attacks bother you a lot or are you worried about having another attack?
+PHQ4A,Were you short of breath?
+PHQ4B,"Did your heart race, pound, or skip?"
+PHQ4C,Did you have chest pain or pressure?
+PHQ4D,Did you sweat?
+PHQ4E,Did you feel as if you were choking?
+PHQ4F,Did you have hot flashes or chills?
+PHQ4G,"Did you have nausea or an upset stomach, or the feeling that you were going to have diarrhea?"
+PHQ4H,"Did you feel dizzy, unsteady, or faint?"
+PHQ4I,Did you have tingling or numbness in parts of your body?
+PHQ4J,Did you tremble or shake?
+PHQ4K,Were you afraid you were dying?
+PHQ5A,"Feeling nervous, anxious, on edge, or worrying a lot about different things.  (If you checked “Not at all”, go to question #6)."
+PHQ5B,Feeling restless so that it is hard to sit still.
+PHQ5C,Getting tired very easily.
+PHQ5D,"Muscle tension, aches, or soreness."
+PHQ5E,Trouble falling asleep or staying asleep.
+PHQ5F,"Trouble concentrating on things, such as reading a book or watching TV."
+PHQ5G,Becoming easily annoyed or irritable.
+PHQ6A,Do you often feel that you can’t control what or how much you eat?
+PHQ6B,"Do you often eat, within any 2-hour period, what most people would regard as an unusually large amount of food? (If you checked “NO” to either a or b, go to question #9)."
+PHQ6C,"Has this been as often, on average, as twice a week for the last 3 months?"
+PHQ7A,Made yourself vomit?
+PHQ7B,Took more than twice the recommended dose of   laxatives?
+PHQ7C,Fasted – not eaten anything at all for at least 24 hours?
+PHQ7D,Exercised for more than an hour specifically to avoid gaining weight after binge eating?
 PHQ8,"If you checked “YES” to any of these ways of avoiding gaining weight, were any as often, on average, as twice a week?"
 PHQ9,Do you ever drink alcohol (including beer or wine)? If you checked “NO” go to question #11.
-PHQ10a,"You drank alcohol even though a doctor suggested that
-you stop drinking because of a problem with your health."
-PHQ10b,"You drank alcohol, were high from alcohol, or
-  hung over while you were working, going to school, or taking care of children
-  or other responsibilities."
-PHQ10c,"You missed or were late for work, school, or other
-activities because you were drinking or hung over."
-PHQ10d,"You had a problem getting along with other people
-while you were drinking."
-PHQ10e,"You drove a car after having several drinks or after
-drinking too much."
+PHQ10A,You drank alcohol even though a doctor suggested that you stop drinking because of a problem with your health.
+PHQ10B,"You drank alcohol, were high from alcohol, or   hung over while you were working, going to school, or taking care of children   or other responsibilities."
+PHQ10C,"You missed or were late for work, school, or other activities because you were drinking or hung over."
+PHQ10D,You had a problem getting along with other people while you were drinking.
+PHQ10E,You drove a car after having several drinks or after drinking too much.
 PHQ11,"If you checked off any problems in this section, how difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?"
-MedGastro,Gastrointestinal (GI)
-MedCardio,Cardiovascular
-MedLiver,Liver dysfunction
-MedEndo,Endocrine / Metabolic
-MedResp,Respiratory
-MedNeuro,Neurologic / Pain
-MedCancer,Cancer
-MedSleep,Sleep
-MedWomen,Women’s Health (women only)
-MedOther,"Other
-medical condition not captured above"
-vr1,"In general, would
-you say your health is:"
-vr2a,"Moderate activities such as moving a table, pushing a vacuum cleaner, bowling, or playing golf."
-vr2b,Climbing several flights of stairs.
-vr3a,Accomplished less than you would like.
-vr3b,Were limited in the kind of work or other activities.
-vr4a,Accomplished less than you would like.
-vr4b,Didn’t do work or other activities as carefully as usual.
-vr5,"During the past 4
-weeks, how much did pain interfere
-with your normal work (including both work outside the home and housework)?"
-vr6a,Have you felt calm and peaceful?
-vr6b,Did you have a lot of energy?
-vr6c,Have you felt down-hearted and blue?
-vr7,"During the past 4 weeks, how much of the time has your physical health or emotional problems interfered with your social activities (like visiting friends, relatives, etc.)?"
-vr8,"Compared to one year ago, how would you rate your physical health in general now?"
-vr9,"Compared to one year ago, how would you rate your emotional problems (such as feeling anxious, depressed, or irritable) now?"
-isi1a,"Please rate the current (i.e., last 2 weeks) SEVERITY of your insomnia problem(s): - Difficulty falling asleep"
-isi1b,"Please rate the current (i.e., last 2 weeks) SEVERITY of your insomnia problem(s): - Difficulty staying asleep"
-isi1c,"Please rate the current (i.e., last 2 weeks) SEVERITY of your insomnia problem(s): - Problem waking up too early"
+MEDGASTRO,Gastrointestinal (GI)
+MEDCARDIO,Cardiovascular
+MEDLIVER,Liver dysfunction
+MEDENDO,Endocrine / Metabolic
+MEDRESP,Respiratory
+MEDNEURO,Neurologic / Pain
+MEDCANCER,Cancer
+MEDSLEEP,Sleep
+MEDWOMEN,Women’s Health (women only)
+MEDOTHER,Other medical condition not captured above
+VR1,"In general, would you say your health is:"
+VR2A,"Moderate activities such as moving a table, pushing a vacuum cleaner, bowling, or playing golf."
+VR2B,Climbing several flights of stairs.
+VR3A,Accomplished less than you would like.
+VR3B,Were limited in the kind of work or other activities.
+VR4A,Accomplished less than you would like.
+VR4B,Didn’t do work or other activities as carefully as usual.
+VR5,"During the past 4 weeks, how much did pain interfere with your normal work (including both work outside the home and housework)?"
+VR6A,Have you felt calm and peaceful?
+VR6B,Did you have a lot of energy?
+VR6C,Have you felt down-hearted and blue?
+VR7,"During the past 4 weeks, how much of the time has your physical health or emotional problems interfered with your social activities (like visiting friends, relatives, etc.)?"
+VR8,"Compared to one year ago, how would you rate your physical health in general now?"
+VR9,"Compared to one year ago, how would you rate your emotional problems (such as feeling anxious, depressed, or irritable) now?"
+ISI1A,"Please rate the current (i.e., last 2 weeks) SEVERITY of your insomnia problem(s): - Difficulty falling asleep"
+ISI1B,"Please rate the current (i.e., last 2 weeks) SEVERITY of your insomnia problem(s): - Difficulty staying asleep"
+ISI1C,"Please rate the current (i.e., last 2 weeks) SEVERITY of your insomnia problem(s): - Problem waking up too early"
 ISI2,How SATISFIED/DISSATISFIED are you with your CURRENT sleep pattern?
 ISI3,"To what extent do you consider your sleep problem to INTERFERE with your daily functioning (e.g. daytime fatigue, mood, ability to function at work/daily chores, concentration, memory, etc.) CURRENTLY?"
 ISI4,How NOTICEABLE to others do you think your sleep problem is in terms of impairing the quality of your life?
