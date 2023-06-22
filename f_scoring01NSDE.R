@@ -16,17 +16,66 @@
 #   publisher={Elsevier}
 # }
 # 
+# Depends: Hmisc
+#
 # Arguments:
-#   data: The survey
+#   data: The survey. Assumes item names in the original survey have underscores ~ SDE_1, SCOFF_5, etc...
 #
 # Details:
-#   All 37 questions scored yes/no
+#   38 items scored yes/no and labeled with the corresponding question:
+#   SDE1	Do you often feel the desire to eat when you are emotionally upset or stressed?
+#   SDE2	Has thinking about food, eating, or calories made it very difficult to concentrate on things you are interested in (for example, working, following a conversation, or reading)?
+#   SDE3	Do you give too much time and thought to food?
+#   SDE4	Does your eating or weight cause distress or difficulty in your life (for example, working/school, in relationships, or in some other important way)?
+#   SDE5	Have you engaged in unhealthy dieting that you or others are concerned about?
+#   SDE6	Are you often preoccupied with a desire to be thinner?
+#   SDE7	Have you been deliberately trying to limit the amount of food you eat to influence your shape or weight (whether or not you have succeeded)?
+#   SDE8	Have you gone for long periods of time (8 waking hours or more) without eating anything at all in order to influence your shape or weight?
+#   SDE9	Have you tried to follow definite rules regarding your eating (for example, a calorie limit) in order to influence your shape or weight (whether or not you have succeeded)?
+#   SDE10	Have you engaged in strict dieting to alter your weight or shape (whether or not you have succeeded)?
+#   SDE11	Has your shape or weight influenced how you think about (judge) yourself as a person?
+#   SDE12	Are you mostly dissatisfied with your shape or weight?
+#   SDE13	Has seeing your reflection (for example, in a mirror or shop window) made you feel bad about your shape?
+#   SDE14	Do you exaggerate or magnify the importance of your weight?
+#   SDE15	Is your weight or shape one of the most important things about you, as a person?
+#   SDE16	Have you had a definite fear that you might gain weight, or gain more weight?
+#   SDE17	Do other people think that you are too thin or have lost too much weight?
+#   SDE18	Have you lost 20 pounds or more in the past 6 months?
+#   SDE19	Are you putting extreme effort in maintaining your weight?
+#   SDE20	Have you regularly eaten extremely large amounts of food at one time and felt that your eating was out of control at that time?
+#   SDE21	Have you had a definite fear of losing control over eating?
+#   SDE22	Have you gone on eating binges where you felt that you could not stop?
+#   SDE23	Over the last three months, have you eaten excessive amounts of food at one time and felt that your eating was out of control at that time?
+#   SDE24	Do you sometimes make yourself throw up (vomit) to control your weight?
+#   SDE25	To control your weight or shape do you do ANY of the following: vomit, use laxatives or diuretics (water pills), exercise excessively in response to overeating, use over the counter diet aids, or alter prescription medication use (for example, insulin)?
+#   SDE26	Do you eat half or more of your food after suppertime?
+#   SDE27	Do you need to eat in order to get back to sleep when you wake up at night?
+#   SDE28	Do you have cravings or urges to eat snacks when you wake up at night?
+#   SDE29	Do you feel out of control over your eating while you are up at night?
+#   SDE30	If you eat at night, is it upsetting to you?
+#   SDE31	Do you eat half or more of your food after suppertime OR  Do you need to eat in order to go to, or get back to sleep?
+#   SCOFF1	Do you make yourself sick because you feel uncomfortably full?
+#   SCOFF2* Do you worry you have lost control over how much you eat?
+#   SCOFF3  Have you recently lost more than 14 lbs in a three month period?
+#   SCOFF4  Do you believe yourself to be fat when others say you are too thin?
+#   SCOFF5  Would you say that food dominates your life?
+#   PHQ6a	Do you often feel that you can’t control what or how much you eat?
+#   PHQ6b	Do you often eat, within any 2-hour period, what most people would regard as an unusually large amount of food? (If you checked “NO” to either a or b, go to question #9).
 #
 # Reults:
 #   Returns the survey with 37 new columns of the formatted SDE items
 #   Original items remain unchanged
+#   *SCOFF_2 is not part of the NSDE, but it's included here for completeness
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-f_scoringSDE <- function(data){
+# table shortcut
+f_tableNA <- function(...) 
+  table(..., useNA = "ifany")
+
+# Items And Questions
+dsItems  <- read.csv("EatingDisorderItemsAndQuestions.csv")
+dsItems <- dsItems[grepl("^(SDE)|(SCOFF)|(PHQ6[ab])", dsItems$Item, ignore.case = T), ]
+
+f_scoringNSDE <- function(data){
   # Domains
   ## Distress
   varsSDEDistress <- c(paste('SDE', 1:5, sep = '_'), "scoff_5")
@@ -130,6 +179,15 @@ f_scoringSDE <- function(data){
   cat('varsSDENEQF Items \n')
   print(apply(data[, varsSDENEQF], 2, f_tableNA))
   
+  data$SCOFF2 <- factor(data$SCOFF_2, labels = c('0 No', '1 Yes'))
+
+  for(i in 1:31)
+    Hmisc::label(data[, paste0("SDE", i)]) <- dsItems$Question[dsItems$Item == paste0("SDE", i)]
+  for(i in c(1:5))
+    Hmisc::label(data[, paste0("SCOFF", i)]) <- dsItems$Question[dsItems$Item == paste0("SCOFF", i)]  
+  for(i in c("a","b"))
+    Hmisc::label(data[, paste0("PHQ6", i)]) <- dsItems$Question[dsItems$Item == paste0("PHQ6", i)]  
+
   return(data)
 }
 
