@@ -21,6 +21,7 @@
 # Details:
 # NEQ
 # Items 1, 4 and 14 are reverse scored. Items 1-12 and 14 are summed.
+# Oddly item 7 missing is actually a level of the factor meaning "Your mood does not change during the day".
 # Item 13 is not included in the total score, but is used to rule out the parasomnia, Nocturnal Sleep Related Eating Disorder (NS-RED).
 # Item 15 is not added to the total score, but instead is used as a descriptor of the course of the symptoms.
 # Items 16 and 17 are used to confirm the presence of distress or impairment if NES is present.
@@ -48,9 +49,9 @@
 #   scoreNEQTotal: item total score for all NEQ items
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 f_scoringNEQ <- function(data){
-  # Recode missing to the lowest level
-  data[, c('NEQ_2','NEQ_3','NEQ_5','NEQ_6','NEQ_7','NEQ_8','NEQ_9','NEQ_10','NEQ_11','NEQ_12')] <- sapply(
-    data[, c('NEQ_2','NEQ_3','NEQ_5','NEQ_6','NEQ_7','NEQ_8','NEQ_9','NEQ_10','NEQ_11','NEQ_12')]
+  # Recode missing to the lowest level for all items except NEQ[1,4,7,14]
+  data[, c('NEQ_2','NEQ_3','NEQ_5','NEQ_6','NEQ_8','NEQ_9','NEQ_10','NEQ_11','NEQ_12')] <- sapply(
+    data[, c('NEQ_2','NEQ_3','NEQ_5','NEQ_6','NEQ_8','NEQ_9','NEQ_10','NEQ_11','NEQ_12')]
     , function(x) ifelse(is.na(x), 0, x))
   data$NEQ_1[is.na(data$NEQ_1)] <- 4  
   data$NEQ_4[is.na(data$NEQ_4)] <- 4
@@ -69,7 +70,7 @@ f_scoringNEQ <- function(data){
   NEQ3 <- factor(data$NEQ_3, labels = c("0 Not at all", "1 A little", "2 Somewhat", "3 Very much so", "4 Extremely so"))
   # NEQ4 is reverse scored
   NEQ4 <- factor(data$NEQ_4, labels = c("0 Complete", "1 Very much", "2 Some", "3 A little", "4 Not at all"))
-  NEQ5 <- factor(data$NEQ_5, labels = c("0 0% (none)", "1 1 - 25% (up to a quarter)", "2 26% - 50% (about half)", "3 51% - 75% (more than half)"))
+  NEQ5 <- factor(data$NEQ_5, labels = c("0 0% (none)", "1 1 - 25% (up to a quarter)", "2 26% - 50% (about half)", "3 51% - 75% (more than half)", "4 76% - 100% (almost all)"))
   NEQ6 <- factor(data$NEQ_6, labels = c("0 Not at all", "1 A little", "2 Somewhat", "3 Very much so", "4 Extremely"))
   NEQ7 <- factor(data$NEQ_7, labels = c("0 Early Morning", "1 Late Morning", "2 Afternoon", "3 Early Evening", "4 Nighttime"))
   NEQ8 <- factor(data$NEQ_8, labels = c("0 Never", "1 Sometimes", "2 About half the time", "3 Usually"))
