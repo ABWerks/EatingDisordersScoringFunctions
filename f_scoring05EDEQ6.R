@@ -165,6 +165,12 @@ f_scoringEDEQ6 <- function(data){
   data$EDEQ12 <- factor(data$EDEQ_12, labels = c('0 No days', '1 1-5 days', '2 6-12 days'
                                                   , '3 13-15 days', '4 16-22 days'
                                                   , '5 23-27 days', '6 Every day'))
+  data$EDEQ13 <- data$EDEQ_13
+  data$EDEQ14 <- data$EDEQ_14
+  data$EDEQ15 <- data$EDEQ_15
+  data$EDEQ16 <- data$EDEQ_16
+  data$EDEQ17 <- data$EDEQ_17
+  data$EDEQ18 <- data$EDEQ_18
   data$EDEQ19 <- factor(data$EDEQ_19, labels = c('0 No days', '1 1-5 days', '2 6-12 days'
                                                   , '3 13-15 days', '4 16-22 days'
                                                   , '5 23-27 days', '6 Every day'))
