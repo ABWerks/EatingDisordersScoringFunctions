@@ -64,22 +64,22 @@ f_scoringNEQ <- function(data){
   print(summary(data$neq_tot))
   
   # NEQ1 is reverse scored
-  NEQ1 <- factor(NEQ_1, labels = c("0 Very", "1 Moderately", "2 Somewhat", "3 A little", "4 Not at all"))
-  NEQ2 <- factor(NEQ_2, labels = c("0 Before 9am", "1 9:01 - 12pm", "2 12:01 - 3pm", "3 3:01 - 6pm", "4 6:01 or later"))
-  NEQ3 <- factor(NEQ_3, labels = c("0 Not at all", "1 A little", "2 Somewhat", "3 Very much so", "4 Extremely so"))
+  NEQ1 <- factor(data$NEQ_1, labels = c("0 Very", "1 Moderately", "2 Somewhat", "3 A little", "4 Not at all"))
+  NEQ2 <- factor(data$NEQ_2, labels = c("0 Before 9am", "1 9:01 - 12pm", "2 12:01 - 3pm", "3 3:01 - 6pm", "4 6:01 or later"))
+  NEQ3 <- factor(data$NEQ_3, labels = c("0 Not at all", "1 A little", "2 Somewhat", "3 Very much so", "4 Extremely so"))
   # NEQ4 is reverse scored
-  NEQ4 <- factor(NEQ_4, labels = c("0 Complete", "1 Very much", "2 Some", "3 A little", "4 Not at all"))
-  NEQ5 <- factor(NEQ_5, labels = c("0 0% (none)", "1 1 - 25% (up to a quarter)", "2 26% - 50% (about half)", "3 51% - 75% (more than half)"))
-  NEQ6 <- factor(NEQ_6, labels = c("0 Not at all", "1 A little", "2 Somewhat", "3 Very much so", "4 Extremely"))
-  NEQ7 <- factor(NEQ_7, labels = c("0 Early Morning", "1 Late Morning", "2 Afternoon", "3 Early Evening", "4 Nighttime"))
-  NEQ8 <- factor(NEQ_8, labels = c("0 Never", "1 Sometimes", "2 About half the time", "3 Usually"))
-  NEQ9 <- factor(NEQ_9, labels = c("0 Never", "1 Less than once a week", "2 About once a week", "3 More than once a week"))
-  NEQ10 <- factor(NEQ_10, labels = c("0 Not at all", "1 A little", "2 Somewhat", "3 Very much so", "4 Extremely so"))
-  NEQ11 <- factor(NEQ_11, labels = c("0 Not at all", "1 A little", "2 Somewhat", "3 Very much so", "4 Extremely so"))
-  NEQ12 <- factor(NEQ_12, labels = c("0 Not at all", "1 A little", "2 Somewhat", "3 Very much so", "4 Extremely so"))
-  NEQ13 <- factor(NEQ_13, labels = c("0 Not at all", "1 A little", "2 Somewhat", "3 Very much so", "4 Completely"))
+  NEQ4 <- factor(data$NEQ_4, labels = c("0 Complete", "1 Very much", "2 Some", "3 A little", "4 Not at all"))
+  NEQ5 <- factor(data$NEQ_5, labels = c("0 0% (none)", "1 1 - 25% (up to a quarter)", "2 26% - 50% (about half)", "3 51% - 75% (more than half)"))
+  NEQ6 <- factor(data$NEQ_6, labels = c("0 Not at all", "1 A little", "2 Somewhat", "3 Very much so", "4 Extremely"))
+  NEQ7 <- factor(data$NEQ_7, labels = c("0 Early Morning", "1 Late Morning", "2 Afternoon", "3 Early Evening", "4 Nighttime"))
+  NEQ8 <- factor(data$NEQ_8, labels = c("0 Never", "1 Sometimes", "2 About half the time", "3 Usually"))
+  NEQ9 <- factor(data$NEQ_9, labels = c("0 Never", "1 Less than once a week", "2 About once a week", "3 More than once a week"))
+  NEQ10 <- factor(data$NEQ_10, labels = c("0 Not at all", "1 A little", "2 Somewhat", "3 Very much so", "4 Extremely so"))
+  NEQ11 <- factor(data$NEQ_11, labels = c("0 Not at all", "1 A little", "2 Somewhat", "3 Very much so", "4 Extremely so"))
+  NEQ12 <- factor(data$NEQ_12, labels = c("0 Not at all", "1 A little", "2 Somewhat", "3 Very much so", "4 Extremely so"))
+  NEQ13 <- factor(data$NEQ_13, labels = c("0 Not at all", "1 A little", "2 Somewhat", "3 Very much so", "4 Completely"))
   # NEQ14 is reverse scored
-  NEQ14 <- factor(NEQ_14, labels = c("0 Complete", "1 Very much", "2 Some", "3 A little", "4 Not at all"))
+  NEQ14 <- factor(data$NEQ_14, labels = c("0 Complete", "1 Very much", "2 Some", "3 A little", "4 Not at all"))
 
   for(i in 1:14)
     Hmisc::label(data[, paste0("NEQ", i)]) <- dsItems$Question[dsItems$Item == paste0("NEQ", i)]
