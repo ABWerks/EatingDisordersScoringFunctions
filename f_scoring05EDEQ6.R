@@ -228,7 +228,7 @@ f_scoringEDEQ6 <- function(data){
   data$EDEQ37 <- factor(data$EDEQ_37, labels = c('0 No days', '1 1-5 days', '2 6-12 days'
                                                     , '3 13-15 days', '4 16-22 days'
                                                     , '5 23-27 days', '6 Every day'))
-  for(i in 1:5)
+  for(i in 1:37)
     Hmisc::label(data[, paste0("EDEQ", i)]) <- dsItems$Question[dsItems$Item == paste0("EDEQ", i)]
 
   return(data)
