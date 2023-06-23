@@ -28,11 +28,11 @@
 # (https://fpnotebook.com/Psych/Exam/ScfQstnr.htm) 
 # Item	Question	Values
 # 0 = No, 1 = Yes
-# SCOFF_1	 Do you make yourself sick because you feel uncomfortably full? 	
-# SCOFF_2	Do you worry you have lost control over how much you eat?
-# SCOFF_3	Have you recently lost more than 14 lbs in a three month period?
-# SCOFF_4	Do you believe yourself to be fat when others say you are too thin?
-# SCOFF_5	Would you say that food dominates your life?
+# SCOFF_1	S Do you make yourself Sick because you feel uncomfortably full? 	
+# SCOFF_2	C Do you worry you have lost Control over how much you eat?
+# SCOFF_3	O Have you recently lost more than (One stone 6.35 kg) 14 lbs in a three month period?
+# SCOFF_4	F Do you believe yourself to be Fat when others say you are too thin?
+# SCOFF_5	F Would you say that Food dominates your life?
 #
 # Values:
 #   scoreSCOFFTotal: item total score for all SCOFF items
