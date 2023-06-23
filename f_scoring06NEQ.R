@@ -48,6 +48,10 @@
 # Values:
 #   scoreNEQTotal: item total score for all NEQ items
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# Items And Questions
+dsItems  <- read.csv("EatingDisorderItemsAndQuestions.csv")
+dsItems <- dsItems[grepl("^(NEQ)", dsItems$Item, ignore.case = T), ]
+
 f_scoringNEQ <- function(data){
   # Recode missing to the lowest level for all items except NEQ[1,4,7,14]
   data[, c('NEQ_2','NEQ_3','NEQ_5','NEQ_6','NEQ_8','NEQ_9','NEQ_10','NEQ_11','NEQ_12')] <- sapply(
