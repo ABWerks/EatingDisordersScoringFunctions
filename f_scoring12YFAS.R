@@ -167,7 +167,7 @@ f_scoringYFAS <- function(data){
   print(f_tableNA(data$scoreYFASSymptoms))
 
   foo <- data[, varsYFAS]
-  colnames(foo) <- paste0('MYFAS', 1:7)
+  colnames(foo) <- paste0('MYFAS', 1:13)
   data  <- cbind(data, foo)
 
   factorLabels <- c("0 Never", "1 Less than monthly", "2 Once a month", "3 2-3 times a month", "4 Once a week", "5 2-3 times a week", "6 4-6 times a week", "7 Every day")
