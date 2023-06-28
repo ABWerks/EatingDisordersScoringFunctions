@@ -52,7 +52,7 @@
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 # Items And Questions
 dsItems  <- read.csv("EatingDisorderItemsAndQuestions.csv")
-dsItems <- dsItems[grepl("^(EAT26)", dsItems$Item, ignore.case = T), ]
+dsItems <- dsItems[grepl("^(HFI)", dsItems$Item, ignore.case = T), ]
 
 # table shortcut
 f_tableNA <- function(...)
