@@ -66,11 +66,11 @@ f_scoringEAT26 <- function(data){
   for(i in 1:26){
     data[, paste0("EAT26", i)] <- factor(
       data[, paste0("EAT26", i)]
-      , labels = factorLabels[sort(unique(data[, paste0("EAT26", i)])+1]
+      , labels = factorLabels[sort(unique(data[, paste0("EAT26", i)]))+1]
     )
     Hmisc::label(data[, paste0("EAT26", i)]) <- dsItems$Question[dsItems$Item == paste0("EAT26", i)]
     cat(paste0("EAT26", i), "\n")
-    print(f_table(data[, paste0("EAT26", i)]))
+    print(f_tableNA(data[, paste0("EAT26", i)]))
   }
 
   return(data)
