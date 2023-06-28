@@ -70,10 +70,11 @@
 #   Muscle Building 2, 5, 9, 12, 13
 #
 # Values:
-#   scoreEPSIExcessiveExercise: item total score for items 1, 3, 7, 11, 15
-#   scoreEPSINegativeAttitudes: item total score for items 4, 6, 8, 10, 14
-#   scoreEPSIMuscleBuilding: item total score for items 2, 5, 9, 12, 13
+#   scoreEPSIExcessiveExercise: domain score for items 1, 3, 7, 11, 15
+#   scoreEPSINegativeAttitudes: domain score for items 4, 6, 8, 10, 14
+#   scoreEPSIMuscleBuilding: domain score for items 2, 5, 9, 12, 13
 #   EPSI_*: All missing values converted to 0
+#   EPSI*: Factors
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 # Items And Questions
 dsItems  <- read.csv("EatingDisorderItemsAndQuestions.csv")
