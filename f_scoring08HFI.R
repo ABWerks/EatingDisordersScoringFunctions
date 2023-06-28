@@ -18,7 +18,7 @@
 # }
 # 
 # Arguments:
-#   The survey. Assumes item names in the original survey have underscores ~ HFI_1, HFI_2, etc...
+#   data: The survey. Assumes item names in the original survey have underscores ~ HFI_1, HFI_2, etc...
 #
 # Details:
 # (1) Coding Responses and Assessing Households’ Food Security Status:   
