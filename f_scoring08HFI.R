@@ -73,11 +73,11 @@ f_scoringHFI <- function(data){
   cat('HFI Cat \n')
   print(f_tableNA(data$scoreHFICat))
   
-  data$HFI1 <- factor(data$HF_1, labels = c("0 Never true", "1 Sometimes to often true"))
-  data$HFI2 <- factor(data$HF_2, labels = c("0 Never true", "1 Sometimes to often true"))
-  data$HFI3 <- factor(data$HF_3, labels = c("0 Never", "1 Some months to every month"))
-  data$HFI4 <- factor(data$HF_4, labels = c("0 N0", "1 Yes"))
-  data$HFI5 <- factor(data$HF_5, labels = c("0 N0", "1 Yes"))
+  data$HFI1 <- factor(data$HFI_1, labels = c("0 Never true", "1 Sometimes to often true"))
+  data$HFI2 <- factor(data$HFI_2, labels = c("0 Never true", "1 Sometimes to often true"))
+  data$HFI3 <- factor(data$HFI_3, labels = c("0 Never", "1 Some months to every month"))
+  data$HFI4 <- factor(data$HFI_4, labels = c("0 N0", "1 Yes"))
+  data$HFI5 <- factor(data$HFI_5, labels = c("0 N0", "1 Yes"))
 
   for(i in 1:5)
     Hmisc::label(data[, paste0("HFI", i)]) <- dsItems$Question[dsItems$Item == paste0("HFI", i)]
