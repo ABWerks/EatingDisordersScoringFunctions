@@ -16,12 +16,12 @@
 # }
 # 
 # Arguments:
-#   data: The survey. 
+#   data: The survey. Assumes item names in the original survey have underscores ~ NEQ_1, NEQ_2, etc...
 #
 # Details:
 # NEQ
 # Items 1, 4 and 14 are reverse scored. Items 1-12 and 14 are summed.
-# Oddly item 7 missing is actually a level of the factor meaning "Your mood does not change during the day".
+# Gotcha: item 7 missing is a level of the factor meaning "Your mood does not change during the day".
 # Item 13 is not included in the total score, but is used to rule out the parasomnia, Nocturnal Sleep Related Eating Disorder (NS-RED).
 # Item 15 is not added to the total score, but instead is used as a descriptor of the course of the symptoms.
 # Items 16 and 17 are used to confirm the presence of distress or impairment if NES is present.
@@ -52,15 +52,18 @@
 dsItems  <- read.csv("EatingDisorderItemsAndQuestions.csv")
 dsItems <- dsItems[grepl("^(NEQ)", dsItems$Item, ignore.case = T), ]
 
+# table shortcut
+f_tableNA <- function(...)
+  table(..., useNA = "ifany")
+
 f_scoringNEQ <- function(data){
   # Recode missing to the lowest level for all items except NEQ[1,4,7,14]
   data[, c('NEQ_2','NEQ_3','NEQ_5','NEQ_6','NEQ_8','NEQ_9','NEQ_10','NEQ_11','NEQ_12')] <- sapply(
     data[, c('NEQ_2','NEQ_3','NEQ_5','NEQ_6','NEQ_8','NEQ_9','NEQ_10','NEQ_11','NEQ_12')]
     , function(x) ifelse(is.na(x), 0, x))
-  data$NEQ_1[is.na(data$NEQ_1)] <- 4  
-  data$NEQ_4[is.na(data$NEQ_4)] <- 4
-  data$NEQ_14[is.na(data$NEQ_14)] <- 4
-
+  data[, c('NEQ_1','NEQ_4','NEQ_14')] <- sapply(data[, c('NEQ_1','NEQ_4','NEQ_14')]
+      , function(x) ifelse(is.na(x), 4, x))
+  
   # Total score across items 1-12 and 14
   data$neq_tot <- rowSums(
     data[, c('NEQ_1','NEQ_2','NEQ_3','NEQ_4','NEQ_5','NEQ_6','NEQ_7','NEQ_8','NEQ_9','NEQ_10'
@@ -68,6 +71,10 @@ f_scoringNEQ <- function(data){
   cat("Summary of neq_tot: total var for all NEQ variables \n")
   print(summary(data$neq_tot))
   
+  # NEQ7 correct coding
+  data$NEQ7 <- data$NEQ_7 + 1
+  data$NEQ7[is.na(data$NEQ_7)] <- 0
+
   # NEQ1 is reverse scored
   data$NEQ1 <- factor(data$NEQ_1, labels = c("0 Very", "1 Moderately", "2 Somewhat", "3 A little", "4 Not at all"))
   data$NEQ2 <- factor(data$NEQ_2, labels = c("0 Before 9am", "1 9:01 - 12pm", "2 12:01 - 3pm", "3 3:01 - 6pm", "4 6:01 or later"))
@@ -76,7 +83,8 @@ f_scoringNEQ <- function(data){
   data$NEQ4 <- factor(data$NEQ_4, labels = c("0 Complete", "1 Very much", "2 Some", "3 A little", "4 Not at all"))
   data$NEQ5 <- factor(data$NEQ_5, labels = c("0 0% (none)", "1 1 - 25% (up to a quarter)", "2 26% - 50% (about half)", "3 51% - 75% (more than half)", "4 76% - 100% (almost all)"))
   data$NEQ6 <- factor(data$NEQ_6, labels = c("0 Not at all", "1 A little", "2 Somewhat", "3 Very much so", "4 Extremely"))
-  data$NEQ7 <- factor(data$NEQ_7, labels = c("0 Early Morning", "1 Late Morning", "2 Afternoon", "3 Early Evening", "4 Nighttime"))
+  # NEQ7 correct coding
+  data$NEQ7 <- factor(data$NEQ7, labels = c("0 Mood unchanged", "1 Early Morning", "2 Late Morning", "3 Afternoon", "4 Early Evening", "5 Nighttime"))
   data$NEQ8 <- factor(data$NEQ_8, labels = c("0 Never", "1 Sometimes", "2 About half the time", "3 Usually", "4 Always"))
   data$NEQ9 <- factor(data$NEQ_9, labels = c("0 Never", "1 Less than once a week", "2 About once a week", "3 More than once a week", "4 Every night"))
   data$NEQ10 <- factor(data$NEQ_10, labels = c("0 Not at all", "1 A little", "2 Somewhat", "3 Very much so", "4 Extremely so"))
@@ -86,8 +94,11 @@ f_scoringNEQ <- function(data){
   # NEQ14 is reverse scored
   data$NEQ14 <- factor(data$NEQ_14, labels = c("0 Complete", "1 Very much", "2 Some", "3 A little", "4 Not at all"))
 
-  for(i in 1:14)
+  for(i in 1:14){
     Hmisc::label(data[, paste0("NEQ", i)]) <- dsItems$Question[dsItems$Item == paste0("NEQ", i)]
+    cat(paste0("NEQ", i), "\n")
+    print(f_tableNA(data[, paste0("NEQ", i)]))
+  }
 
   return(data)
 }
