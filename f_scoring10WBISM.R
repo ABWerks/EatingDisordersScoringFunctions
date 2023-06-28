@@ -63,11 +63,11 @@ f_scoringWBISM <- function(data){
   colnames(foo) <- paste0('WBIS', 1:11)
   data  <- cbind(data, foo)
 
-  factorLabels <- c("1 Strongly disagree", "2 Disagree", "3 Somewhat disagree", "4 Neither agree nor disagree", "5 Somewhat agree", "6 Agree", "7 Strongly agree")
+  factorLabels <- c("0 Not applicable", "1 Strongly disagree", "2 Disagree", "3 Somewhat disagree", "4 Neither agree nor disagree", "5 Somewhat agree", "6 Agree", "7 Strongly agree")
   for(i in 2:11){
     data[, paste0("WBIS", i)] <- factor(
       data[, paste0("WBIS", i)]
-      , labels = factorLabels[sort(unique(data[, paste0("WBIS", i)]))]
+      , labels = factorLabels[sort(unique(data[, paste0("WBIS", i)]))+1]
     )
     Hmisc::label(data[, paste0("WBIS", i)]) <- dsItems$Question[dsItems$Item == paste0("WBIS", i)]
     cat(paste0("WBIS", i), "\n")
@@ -75,7 +75,7 @@ f_scoringWBISM <- function(data){
   }
   # WBISM-1 is reverse coded
   data[, "WBIS1"]  <- factor(data[, "WBIS1"], labels = c(
-    "1 Strongly agree", "2 Agree", "3 Somewhat agree", "4 Neither agree nor disagree", "5 Somewhat disagree", "6 Disagree", "7 Strongly disagree"
+    "0 Not Applicable", "1 Strongly agree", "2 Agree", "3 Somewhat agree", "4 Neither agree nor disagree", "5 Somewhat disagree", "6 Disagree", "7 Strongly disagree"
   ))
   Hmisc::label(data[, paste0("WBIS", 1)]) <- dsItems$Question[dsItems$Item == paste0("WBIS", 1)]
   cat(paste0("WBIS", 1), "\n")
