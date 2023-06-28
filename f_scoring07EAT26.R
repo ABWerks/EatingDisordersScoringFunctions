@@ -63,7 +63,7 @@ f_scoringEAT26 <- function(data){
   data  <- cbind(data, foo)
 
   factorLabels <- c("0 Never/Rarely/Sometimes", "1 Often", "2 Usually", "3 Always")
-  for(i in 1:26){
+  for(i in 1:25){
     data[, paste0("EAT26", i)] <- factor(
       data[, paste0("EAT26", i)]
       , labels = factorLabels[sort(unique(data[, paste0("EAT26", i)]))+1]
@@ -72,6 +72,16 @@ f_scoringEAT26 <- function(data){
     cat(paste0("EAT26", i), "\n")
     print(f_tableNA(data[, paste0("EAT26", i)]))
   }
-
+  data[, "EAT2626"]  <- factor(ifelse(
+    data[, "EAT2626"] == 3, "3 Never"), ifelse(
+      data[, "EAT2626"] == 2, "2 Rarely", ifelse(
+        data[, "EAT2626"] == 1, "1 Sometimes", "0 Often/Usually/Always"
+      )
+    )
+  )
+  Hmisc::label(data[, paste0("EAT26", 26)]) <- dsItems$Question[dsItems$Item == paste0("EAT26", 26)]
+  cat(paste0("EAT26", 26), "\n")
+  print(f_tableNA(data[, paste0("EAT26", 26)]))
+  
   return(data)
 }
