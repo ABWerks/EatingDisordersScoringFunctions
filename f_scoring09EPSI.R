@@ -111,7 +111,7 @@ f_scoringEPSI <- function(data){
   data  <- cbind(data, foo)
   
   factorLabels <- c("0 Never", "1 Rarely", "2 Sometimes", "3 Often", "4 Very often")
-  for(i in as.gsub("EPSI(\\d+)", "\\1", colnames(foo))){
+  for(i in gsub("EPSI(\\d+)", "\\1", colnames(foo))){
     data[, paste0("EPSI", i)] <- factor(
       data[, paste0("EPSI", i)]
       , labels = factorLabels[sort(unique(data[, paste0("EPSI", i)]))+1]
