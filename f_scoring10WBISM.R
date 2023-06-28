@@ -4,6 +4,8 @@
 # Adam Batten
 # October 2021
 # 
+# Depends: Hmisc
+#
 # Description:
 # Function to score the Modified Weight Bias Internalization Scale (WBIS-M)
 #

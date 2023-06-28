@@ -3,6 +3,8 @@
 # Function: Scoring the EDS-PC
 # ABWerks
 # October 2021
+#
+# Depends: Hmisc
 # 
 # Description:
 # Function to score the Eating Disorders Screen for Primary Care (EDS-PC) items
@@ -16,8 +18,6 @@
 #   year={2003},
 #   publisher={Wiley Online Library}
 # }
-# 
-# Depends: Hmisc
 # 
 # Arguments:
 #   data: The survey. Assumes item names in the original survey have underscores ~ EDS_PC1, EDS_PC2, etc...

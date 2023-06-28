@@ -4,6 +4,8 @@
 # ABWerks
 # October 2021
 # 
+# Depends: Hmisc
+#
 # Description:
 #   Function to score the Household Food Insecurity (HFI) survey
 #@article{blumberg1999effectiveness,

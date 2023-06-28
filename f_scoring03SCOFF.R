@@ -4,6 +4,8 @@
 # ABWerks
 # October 2021
 # 
+# Depends: Hmisc
+#
 # Description:
 # Function to score the SCOFF items
 #@article{morgan2000scoff,
