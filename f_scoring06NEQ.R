@@ -58,8 +58,8 @@ f_tableNA <- function(...)
 
 f_scoringNEQ <- function(data){
   # Recode missing to the lowest level for all items except NEQ[1,4,7,14]
-  data[, c('NEQ_2','NEQ_3','NEQ_5','NEQ_6','NEQ_8','NEQ_9','NEQ_10','NEQ_11','NEQ_12')] <- sapply(
-    data[, c('NEQ_2','NEQ_3','NEQ_5','NEQ_6','NEQ_8','NEQ_9','NEQ_10','NEQ_11','NEQ_12')]
+  data[, c('NEQ_2','NEQ_3','NEQ_5','NEQ_6','NEQ_8','NEQ_9','NEQ_10','NEQ_11','NEQ_12','NEQ_13')] <- sapply(
+    data[, c('NEQ_2','NEQ_3','NEQ_5','NEQ_6','NEQ_8','NEQ_9','NEQ_10','NEQ_11','NEQ_12','NEQ_13')]
     , function(x) ifelse(is.na(x), 0, x))
   data[, c('NEQ_1','NEQ_4','NEQ_14')] <- sapply(data[, c('NEQ_1','NEQ_4','NEQ_14')]
       , function(x) ifelse(is.na(x), 4, x))
