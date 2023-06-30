@@ -51,21 +51,6 @@ EDDS18,"How much do eating or body image problems impact your relationships with
 EDDS19,"How much do you weigh (lbs)? If uncertain, please give your best estimate."
 EDDS20,How tall are you? Please specify in inches (5 ft.= 60 in.)
 EDDS21,What is your highest weight (lbs) at your current height?
-WH1HIGHT,How tall are you? (inches)
-WH2WEIGHT,How much do you weigh now? (lb)
-WH3A,"What was your highest adult weight, not including pregnancy (age 18 and older)? (lb)"
-WH3B,How old were you?
-WH4A,What was your lowest adult weight (age 18 and older)? (lb)
-WH4B,How old were you?
-WH5,"How old were you when you were first overweight (at least 10 lbs. as a child or 15 lbs. as an adult, not including pregnancy)? If you are not sure, what is your best guess? (years)Skip this questions if you have never been overweight."
-SELFREC1,Do you believe that you have ever had an eating disorder(s)?
-SELFREC2,Do you believe that you currently have an eating disorder?
-SELFREC3,"If yes, what eating disorder(s) do you believe you have/had (not including pregnancy):"
-SELFREC4,Have you ever been diagnosed by a medical provider with an eating disorder(s)?
-SELFREC5,"If yes, what eating disorder(s) were you/are you diagnosed with:"
-SELFREC6,What is your ideal weight? (lbs)
-TX1,Have you ever sought treatment for an eating disorder?
-TX2,Are you currently in treatment for an eating disorder?
 SCOFF1,Do you make yourself sick because you feel uncomfortably full?
 SCOFF2,Do you worry you have lost control over how much you eat?
 SCOFF3,Have you recently lost more than 14 lbs in a three month period?
@@ -212,56 +197,6 @@ MYFAS10, I had such strong urges to eat certain foods that I  couldn’t think o
 MYFAS11,I tried and failed to cut down on or stop eating certain  foods.
 MYFAS12,"I was so distracted by eating that I could have been hurt (e.g., when driving a car, crossing the street, operating machinery)."
 MYFAS13,My friends or family were worried about how much I  overate.
-DEQ1,I often find that I don't live up to my own standard or ideals
-DEQ2,There is a considerable difference between how I am now and how I would like to be.
-DEQ3,I tend not to be satisfied with what I have.
-DEQ4,I have a difficult time accepting weaknesses in myself.
-DEQ5,I tend to be very critical of myself.
-DEQ6,I very frequently compare myself to standards or goals.
-PHQ1A,Stomach pain
-PHQ1B,Back pain
-PHQ1C,"Pain in your arms, legs, or joints (knees, hips, etc.)"
-PHQ1D,Menstrual cramps or other problems with your   periods
-PHQ1E,Pain or problems during sexual intercourse
-PHQ1F,Headaches
-PHQ1G,Chest pain
-PHQ1H,Dizziness
-PHQ1I,Fainting spells
-PHQ1J,Feeling your heart pound or race
-PHQ1K,Shortness of breath
-PHQ1L,"Constipation, loose bowels, or diarrhea"
-PHQ1M,"Nausea, gas, or indigestion"
-PHQ2A,Little interest or pleasure in doing things
-PHQ2B,"Feeling down, depressed, or hopeless"
-PHQ2C,"Trouble falling or staying asleep, or sleeping too much"
-PHQ2D,Feeling tired or having little energy
-PHQ2E,Poor appetite or overeating
-PHQ2F,Feeling bad about yourself – or that you are a failure or have let yourself or your family down
-PHQ2G,"Trouble concentrating on things, such as reading the newspaper or watching television"
-PHQ2H,Moving or speaking so slowly that other people could have noticed? Or the opposite – being so fidgety or restless that you have been moving around a lot more than usual
-PHQ2I,Thoughts that you would be better off dead or of hurting yourself in some way
-PHQ3A,"In the last 4 weeks, have you had an anxiety attack – suddenly feeling fear or panic?  (If you checked “NO”, go to question #5)."
-PHQ3B,Has this ever happened before?
-PHQ3C,"Do some of these attacks come suddenly out of the blue – that is, in situations where you don’t expect to be nervous or uncomfortable?"
-PHQ3D,Do these attacks bother you a lot or are you worried about having another attack?
-PHQ4A,Were you short of breath?
-PHQ4B,"Did your heart race, pound, or skip?"
-PHQ4C,Did you have chest pain or pressure?
-PHQ4D,Did you sweat?
-PHQ4E,Did you feel as if you were choking?
-PHQ4F,Did you have hot flashes or chills?
-PHQ4G,"Did you have nausea or an upset stomach, or the feeling that you were going to have diarrhea?"
-PHQ4H,"Did you feel dizzy, unsteady, or faint?"
-PHQ4I,Did you have tingling or numbness in parts of your body?
-PHQ4J,Did you tremble or shake?
-PHQ4K,Were you afraid you were dying?
-PHQ5A,"Feeling nervous, anxious, on edge, or worrying a lot about different things.  (If you checked “Not at all”, go to question #6)."
-PHQ5B,Feeling restless so that it is hard to sit still.
-PHQ5C,Getting tired very easily.
-PHQ5D,"Muscle tension, aches, or soreness."
-PHQ5E,Trouble falling asleep or staying asleep.
-PHQ5F,"Trouble concentrating on things, such as reading a book or watching TV."
-PHQ5G,Becoming easily annoyed or irritable.
 PHQ6A,Do you often feel that you can’t control what or how much you eat?
 PHQ6B,"Do you often eat, within any 2-hour period, what most people would regard as an unusually large amount of food? (If you checked “NO” to either a or b, go to question #9)."
 PHQ6C,"Has this been as often, on average, as twice a week for the last 3 months?"
@@ -270,41 +205,3 @@ PHQ7B,Took more than twice the recommended dose of   laxatives?
 PHQ7C,Fasted – not eaten anything at all for at least 24 hours?
 PHQ7D,Exercised for more than an hour specifically to avoid gaining weight after binge eating?
 PHQ8,"If you checked “YES” to any of these ways of avoiding gaining weight, were any as often, on average, as twice a week?"
-PHQ9,Do you ever drink alcohol (including beer or wine)? If you checked “NO” go to question #11.
-PHQ10A,You drank alcohol even though a doctor suggested that you stop drinking because of a problem with your health.
-PHQ10B,"You drank alcohol, were high from alcohol, or   hung over while you were working, going to school, or taking care of children   or other responsibilities."
-PHQ10C,"You missed or were late for work, school, or other activities because you were drinking or hung over."
-PHQ10D,You had a problem getting along with other people while you were drinking.
-PHQ10E,You drove a car after having several drinks or after drinking too much.
-PHQ11,"If you checked off any problems in this section, how difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?"
-MEDGASTRO,Gastrointestinal (GI)
-MEDCARDIO,Cardiovascular
-MEDLIVER,Liver dysfunction
-MEDENDO,Endocrine / Metabolic
-MEDRESP,Respiratory
-MEDNEURO,Neurologic / Pain
-MEDCANCER,Cancer
-MEDSLEEP,Sleep
-MEDWOMEN,Women’s Health (women only)
-MEDOTHER,Other medical condition not captured above
-VR1,"In general, would you say your health is:"
-VR2A,"Moderate activities such as moving a table, pushing a vacuum cleaner, bowling, or playing golf."
-VR2B,Climbing several flights of stairs.
-VR3A,Accomplished less than you would like.
-VR3B,Were limited in the kind of work or other activities.
-VR4A,Accomplished less than you would like.
-VR4B,Didn’t do work or other activities as carefully as usual.
-VR5,"During the past 4 weeks, how much did pain interfere with your normal work (including both work outside the home and housework)?"
-VR6A,Have you felt calm and peaceful?
-VR6B,Did you have a lot of energy?
-VR6C,Have you felt down-hearted and blue?
-VR7,"During the past 4 weeks, how much of the time has your physical health or emotional problems interfered with your social activities (like visiting friends, relatives, etc.)?"
-VR8,"Compared to one year ago, how would you rate your physical health in general now?"
-VR9,"Compared to one year ago, how would you rate your emotional problems (such as feeling anxious, depressed, or irritable) now?"
-ISI1A,"Please rate the current (i.e., last 2 weeks) SEVERITY of your insomnia problem(s): - Difficulty falling asleep"
-ISI1B,"Please rate the current (i.e., last 2 weeks) SEVERITY of your insomnia problem(s): - Difficulty staying asleep"
-ISI1C,"Please rate the current (i.e., last 2 weeks) SEVERITY of your insomnia problem(s): - Problem waking up too early"
-ISI2,How SATISFIED/DISSATISFIED are you with your CURRENT sleep pattern?
-ISI3,"To what extent do you consider your sleep problem to INTERFERE with your daily functioning (e.g. daytime fatigue, mood, ability to function at work/daily chores, concentration, memory, etc.) CURRENTLY?"
-ISI4,How NOTICEABLE to others do you think your sleep problem is in terms of impairing the quality of your life?
-ISI5,How WORRIED/DISTRESSED are you about your current sleep problem?
