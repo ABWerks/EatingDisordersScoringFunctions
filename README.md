@@ -1,4 +1,4 @@
-# Eating Disorders Scoring Functions
+# Scoring Functions for Eating Disorders Screeners
 
 [Development and validation of the BRief Eating Disorder Screener (BREDS) for US veterans in healthcare and community settings.](#masheb2024) 
 
