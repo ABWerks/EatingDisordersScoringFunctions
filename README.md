@@ -12,7 +12,7 @@ Veterans enrolled in VA healthcare (N = 344) completed a survey of screening i
 Item selection models using machine learning techniques resulted in a five-item screen with good sensitivity, specificity and area under the curve (0.75, 0.87, and 0.83). Items included: (1) Do you do things to rid your body or stomach of calories or food (vomiting, excessive exercise, laxative or diuretic use, or something else)? (2) Do you ever eat an extremely large amount of food without thinking? (3) Are you or other people in your life concerned about a recent change in your weight? (4) Is your weight or shape one of the main ways you judge yourself? (5) Do you need to eat in order to get back to sleep when you wake up at night?
 ## Conclusion
 The 5-item BRief Eating Disorder Screener (BREDS) is the first screen developed and validated for a broad range of DSM-5 eating disorder diagnoses.
-Keywords: Eating disorders; Screening; DSM-V; Veterans
+Keywords: eating disorder screening, DSM-5 screener, brief eating disorder screener, veterans, mental health, eating disorder diagnosis, eating disorder assessment, screening tool, questionnaire, US veterans, machine learning, sensitivity, specificity
 
 
 # References
